@@ -1,0 +1,3164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="金融学 Ch02–Ch04 利率章节交互式选择题题库，共 150 题，附解析、错题复习与成绩统计。">
+  <title>利率学习室 · 三章交互题库</title>
+  <style>
+:root {
+  --ink: #182034;
+  --muted: #6f7688;
+  --soft: #9aa0af;
+  --paper: #f5f5f1;
+  --card: #ffffff;
+  --line: #e6e6e0;
+  --navy: #172238;
+  --navy-light: #24324c;
+  --purple: #6d5dfc;
+  --purple-soft: #efedff;
+  --green: #138a70;
+  --green-soft: #e9f7f1;
+  --red: #c64c55;
+  --red-soft: #fff0f0;
+  --orange: #d8783e;
+  --shadow: 0 12px 38px rgba(24, 32, 52, .06);
+  --radius: 18px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: "Inter", "SF Pro Display", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+button { font: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+button:focus-visible { outline: 3px solid rgba(109, 93, 252, .28); outline-offset: 2px; }
+.hidden { display: none !important; }
+
+.app-shell { min-height: 100vh; }
+.sidebar {
+  position: fixed;
+  inset: 0 auto 0 0;
+  z-index: 30;
+  width: 248px;
+  display: flex;
+  flex-direction: column;
+  padding: 28px 18px 20px;
+  color: #fff;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(109, 93, 252, .18), transparent 30%),
+    linear-gradient(170deg, #19263e 0%, #121c2e 100%);
+}
+.brand { display: flex; align-items: center; gap: 12px; padding: 0 10px 30px; }
+.brand-mark {
+  width: 42px; height: 42px; border-radius: 13px;
+  display: grid; place-items: center; position: relative;
+  font-family: Georgia, serif; font-size: 25px; font-style: italic;
+  color: #172238; background: #f2c66d; box-shadow: inset 0 -3px 0 rgba(0,0,0,.1);
+}
+.brand-mark span { font: 700 11px/1 system-ui; position: absolute; right: 6px; bottom: 6px; }
+.brand strong { display: block; font-size: 17px; letter-spacing: .06em; }
+.brand small { display: block; margin-top: 5px; font-size: 8px; letter-spacing: .14em; color: #8e9ab1; }
+.nav-item {
+  width: 100%; border: 0; border-radius: 11px; padding: 12px 13px;
+  display: flex; align-items: center; gap: 11px; text-align: left;
+  color: #aeb8ca; background: transparent; cursor: pointer; transition: .2s ease;
+}
+.nav-item:hover { color: #fff; background: rgba(255,255,255,.06); }
+.nav-item.active { color: #fff; background: rgba(109, 93, 252, .25); box-shadow: inset 3px 0 #9184ff; }
+.nav-icon { width: 23px; font-size: 18px; text-align: center; color: #96a2b8; }
+.nav-item.active .nav-icon { color: #c9c2ff; }
+.nav-copy { flex: 1; min-width: 0; }
+.nav-copy strong { display: block; font-size: 12px; font-weight: 600; }
+.nav-copy small { display: block; margin-top: 3px; color: #7f8ca3; font-size: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.nav-progress { font-size: 10px; font-variant-numeric: tabular-nums; color: #8e9ab1; }
+.nav-label { margin: 26px 13px 10px; color: #65748e; font-size: 9px; font-weight: 700; letter-spacing: .16em; }
+.sidebar-note { margin: auto 8px 20px; padding: 16px; display: flex; gap: 10px; border: 1px solid rgba(255,255,255,.08); border-radius: 13px; background: rgba(255,255,255,.035); }
+.note-icon { color: #f2c66d; }
+.sidebar-note p { margin: 0; color: #8f9bb1; font-size: 11px; line-height: 1.8; }
+.sidebar-footer { display: flex; align-items: center; gap: 7px; padding: 0 8px; color: #68758b; font-size: 9px; }
+.save-dot { width: 6px; height: 6px; border-radius: 50%; background: #4eb99a; box-shadow: 0 0 0 3px rgba(78,185,154,.1); }
+.sidebar-backdrop { display: none; }
+
+.main-content { margin-left: 248px; min-height: 100vh; }
+.topbar {
+  height: 68px; padding: 0 42px; display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid var(--line); background: rgba(245,245,241,.9); backdrop-filter: blur(10px);
+  position: sticky; top: 0; z-index: 20;
+}
+.breadcrumb { display: flex; align-items: center; gap: 10px; font-size: 12px; }
+.breadcrumb span { color: var(--soft); }
+.breadcrumb b { color: #c4c5c0; font-weight: 400; }
+.breadcrumb strong { font-weight: 600; }
+.topbar-actions { display: flex; align-items: center; gap: 24px; }
+.keyboard-hint { color: var(--soft); font-size: 10px; }
+.text-button { border: 0; padding: 6px 0; color: var(--muted); background: transparent; cursor: pointer; font-size: 11px; }
+.text-button:hover { color: var(--red); }
+.mobile-menu { display: none !important; }
+.view { max-width: 1380px; margin: 0 auto; padding: 38px 42px 60px; }
+
+.hero { min-height: 315px; display: grid; grid-template-columns: 1.2fr .8fr; gap: 30px; align-items: center; padding: 24px 12px 34px; }
+.eyebrow { display: flex; align-items: center; gap: 9px; margin-bottom: 18px; color: #777f90; font-size: 9px; font-weight: 700; letter-spacing: .16em; }
+.eyebrow span { width: 24px; height: 2px; background: var(--purple); }
+.hero h1 { margin: 0; font-size: clamp(38px, 4.1vw, 58px); line-height: 1.2; letter-spacing: -.055em; font-weight: 750; }
+.hero h1 em { color: var(--purple); font-family: Georgia, "Songti SC", serif; font-weight: 500; }
+.hero-copy > p { max-width: 580px; margin: 20px 0 25px; color: var(--muted); font-size: 13px; line-height: 1.9; }
+.hero-actions { display: flex; gap: 11px; flex-wrap: wrap; }
+.primary-button, .secondary-button {
+  border-radius: 10px; padding: 11px 18px; cursor: pointer; font-size: 12px; font-weight: 600; transition: .18s ease;
+}
+.primary-button { border: 1px solid var(--navy); color: #fff; background: var(--navy); box-shadow: 0 5px 12px rgba(23,34,56,.12); }
+.primary-button:hover { background: #283852; transform: translateY(-1px); }
+.primary-button span { margin-left: 20px; }
+.secondary-button { border: 1px solid #dcded8; color: var(--ink); background: #fff; }
+.secondary-button:hover { border-color: #b9bdc7; background: #fafafa; }
+.primary-button:disabled, .secondary-button:disabled { opacity: .38; cursor: not-allowed; transform: none; }
+
+.hero-visual { position: relative; height: 260px; display: grid; place-items: center; }
+.orbit { position: absolute; border: 1px solid #deded8; border-radius: 50%; transform: rotate(-18deg); }
+.orbit-one { width: 310px; height: 170px; }
+.orbit-two { width: 240px; height: 240px; border-style: dashed; opacity: .65; }
+.formula-card { position: relative; z-index: 2; width: 260px; padding: 26px 22px; border-radius: 17px; color: #fff; background: var(--navy); box-shadow: 0 25px 50px rgba(23,34,56,.2); transform: rotate(-3deg); }
+.formula-card > span { color: #9ca9bf; font-size: 8px; letter-spacing: .18em; }
+.formula-card strong { display: block; margin: 17px 0; font: 400 21px/1.4 Georgia, serif; white-space: nowrap; }
+.formula-card small { color: #8f9bb0; font-size: 10px; }
+.formula-chip { position: absolute; z-index: 3; padding: 9px 13px; border: 1px solid #e2e1da; border-radius: 9px; color: #4f586b; background: rgba(255,255,255,.92); box-shadow: 0 7px 20px rgba(24,32,52,.07); font: 13px Georgia, serif; }
+.chip-one { left: 0; top: 37px; transform: rotate(5deg); }
+.chip-two { right: 0; top: 56px; transform: rotate(4deg); }
+.chip-three { right: 13px; bottom: 26px; transform: rotate(-5deg); }
+
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 13px; margin-bottom: 42px; }
+.stat-card { padding: 18px 20px; border: 1px solid var(--line); border-radius: 14px; background: rgba(255,255,255,.7); }
+.stat-card .stat-label { display: flex; align-items: center; justify-content: space-between; color: var(--muted); font-size: 10px; }
+.stat-card .stat-icon { color: #a0a5b1; font-size: 15px; }
+.stat-card strong { display: inline-block; margin-top: 9px; font-size: 26px; letter-spacing: -.04em; }
+.stat-card small { margin-left: 5px; color: var(--soft); font-size: 10px; }
+.section-heading { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 17px; }
+.section-kicker { color: var(--purple); font-size: 8px; font-weight: 700; letter-spacing: .18em; }
+.section-heading h2 { margin: 5px 0 0; font-size: 23px; letter-spacing: -.03em; }
+.section-caption { color: var(--soft); font-size: 10px; }
+.chapter-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.chapter-card { position: relative; overflow: hidden; padding: 23px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--card); box-shadow: 0 4px 15px rgba(24,32,52,.025); transition: .22s ease; }
+.chapter-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: #d9d8d2; }
+.chapter-card::after { content: ""; position: absolute; width: 110px; height: 110px; right: -55px; top: -55px; border-radius: 50%; background: var(--chapter-soft); }
+.chapter-number { display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; }
+.chapter-number > span { color: var(--chapter-color); font: 700 10px/1 system-ui; letter-spacing: .12em; }
+.chapter-number small { padding: 4px 7px; border-radius: 5px; color: var(--muted); background: #f4f4f0; font-size: 9px; }
+.chapter-card h3 { margin: 0 0 6px; font-size: 19px; letter-spacing: -.025em; }
+.chapter-english { height: 28px; margin: 0; color: var(--soft); font: 10px/1.4 Georgia, serif; }
+.chapter-description { min-height: 55px; margin: 15px 0; color: var(--muted); font-size: 11px; line-height: 1.7; }
+.distribution { display: flex; height: 5px; overflow: hidden; gap: 2px; margin: 18px 0 9px; border-radius: 5px; }
+.distribution span { min-width: 3px; }
+.distribution-legend { display: flex; justify-content: space-between; color: var(--soft); font-size: 8px; }
+.chapter-card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 21px; padding-top: 16px; border-top: 1px solid #efefeb; }
+.chapter-card-footer span { color: var(--muted); font-size: 10px; }
+.card-start { border: 0; color: var(--chapter-color); background: transparent; cursor: pointer; font-size: 11px; font-weight: 700; }
+.method-note { display: flex; gap: 15px; margin-top: 22px; padding: 18px 22px; border: 1px solid #e2e0f2; border-radius: 14px; background: #f0eff8; }
+.method-icon { color: var(--purple); font-size: 22px; }
+.method-note strong { font-size: 11px; }
+.method-note p { margin: 5px 0 0; color: #707388; font-size: 10px; line-height: 1.75; }
+
+.quiz-view { max-width: 1280px; }
+.quiz-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; padding: 4px 0 24px; }
+.eyebrow.compact { margin: 0 0 8px; color: var(--chapter-color, var(--purple)); }
+.quiz-heading h1 { margin: 0; font-size: 30px; letter-spacing: -.035em; }
+.quiz-heading p { max-width: 670px; margin: 10px 0 0; color: var(--muted); font-size: 11px; line-height: 1.7; }
+.quiz-heading-actions { display: flex; gap: 9px; flex-shrink: 0; }
+.chapter-progress-card { margin-bottom: 20px; padding: 15px 20px; border: 1px solid var(--line); border-radius: 13px; background: rgba(255,255,255,.7); }
+.progress-stats { display: flex; align-items: center; gap: 25px; margin-bottom: 11px; }
+.progress-stats > div { display: flex; align-items: baseline; gap: 6px; }
+.progress-stats strong { font-size: 17px; }
+.progress-stats span { color: var(--muted); font-size: 9px; }
+.progress-stats .accuracy { margin-left: auto; }
+.progress-stats .accuracy strong { color: var(--chapter-color); }
+.progress-track { height: 5px; overflow: hidden; border-radius: 5px; background: #e9e9e3; }
+.progress-fill { height: 100%; width: 0; border-radius: inherit; background: var(--chapter-color); transition: width .3s ease; }
+.practice-layout { display: grid; grid-template-columns: minmax(0, 1fr) 258px; gap: 19px; align-items: start; }
+.question-toolbar { min-height: 38px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.filter-group { display: flex; gap: 4px; padding: 3px; border: 1px solid var(--line); border-radius: 9px; background: #eeeee9; }
+.filter-button { border: 0; border-radius: 6px; padding: 6px 12px; color: var(--muted); background: transparent; cursor: pointer; font-size: 10px; }
+.filter-button.active { color: var(--ink); background: #fff; box-shadow: 0 2px 5px rgba(24,32,52,.06); font-weight: 600; }
+.question-position { color: var(--soft); font-size: 10px; font-variant-numeric: tabular-nums; }
+.question-card { padding: 27px 30px 20px; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; box-shadow: var(--shadow); }
+.question-meta { display: flex; align-items: center; gap: 7px; margin-bottom: 19px; }
+.meta-badge { padding: 4px 8px; border-radius: 5px; font-size: 9px; font-weight: 600; }
+.meta-badge.type { color: var(--chapter-color); background: var(--chapter-soft); }
+.meta-badge.topic { color: #697185; background: #f2f3f4; }
+.meta-badge.number { margin-left: auto; color: var(--soft); background: transparent; font-variant-numeric: tabular-nums; }
+.question-text { min-height: 58px; margin: 0 0 22px; font-size: 18px; line-height: 1.65; letter-spacing: -.01em; font-weight: 650; }
+.options-list { display: grid; gap: 10px; }
+.option-button { width: 100%; min-height: 50px; display: flex; align-items: center; gap: 13px; padding: 11px 14px; border: 1px solid #e4e5e1; border-radius: 11px; color: #3f4657; background: #fdfdfc; text-align: left; cursor: pointer; transition: .16s ease; }
+.option-button:hover:not(:disabled) { border-color: var(--chapter-color); background: var(--chapter-soft); transform: translateX(2px); }
+.option-letter { flex: 0 0 28px; width: 28px; height: 28px; display: grid; place-items: center; border: 1px solid #dedfd9; border-radius: 8px; color: #7b8190; background: #fff; font: 600 11px/1 system-ui; }
+.option-text { flex: 1; font-size: 12px; line-height: 1.6; }
+.option-status { font-size: 16px; }
+.option-button:disabled { cursor: default; }
+.option-button.correct { border-color: #75bda6; color: #166e59; background: var(--green-soft); }
+.option-button.correct .option-letter { border-color: #75bda6; color: #fff; background: var(--green); }
+.option-button.wrong { border-color: #dfa0a5; color: #a63c46; background: var(--red-soft); }
+.option-button.wrong .option-letter { border-color: #dfa0a5; color: #fff; background: var(--red); }
+.option-button.dimmed { opacity: .48; }
+.feedback { margin-top: 18px; padding: 16px 18px; border-radius: 11px; background: #f5f6f4; border-left: 3px solid var(--green); }
+.feedback.is-wrong { border-left-color: var(--red); }
+.feedback-title { display: flex; align-items: center; gap: 7px; margin-bottom: 7px; font-size: 11px; font-weight: 700; }
+.feedback.is-wrong .feedback-title { color: var(--red); }
+.feedback:not(.is-wrong) .feedback-title { color: var(--green); }
+.feedback p { margin: 0; color: #5f6674; font-size: 11px; line-height: 1.8; }
+.feedback .correct-answer { margin-bottom: 5px; color: var(--ink); font-weight: 600; }
+.question-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 20px; padding-top: 15px; border-top: 1px solid #efefeb; }
+.bookmark-button { display: flex; align-items: center; gap: 6px; border: 0; padding: 4px 0; color: var(--muted); background: transparent; cursor: pointer; font-size: 10px; }
+.bookmark-button span { font-size: 18px; line-height: 1; }
+.bookmark-button.active { color: #b47a16; }
+.source-label { color: var(--soft); font-size: 9px; }
+.question-navigation { display: flex; justify-content: space-between; margin-top: 14px; }
+.question-map-card { position: sticky; top: 88px; padding: 20px; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; }
+.map-heading { display: flex; justify-content: space-between; align-items: center; }
+.map-heading span { color: var(--soft); font-size: 7px; font-weight: 700; letter-spacing: .16em; }
+.map-heading h3 { margin: 4px 0 0; font-size: 15px; }
+.map-heading > strong { color: var(--chapter-color); font-size: 13px; }
+.map-legend { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin: 16px 0; color: var(--soft); font-size: 8px; }
+.map-legend span { display: flex; align-items: center; gap: 5px; }
+.legend-dot { width: 7px; height: 7px; border-radius: 2px; background: #e5e6e2; }
+.legend-dot.answered { background: #a9b0c0; }
+.legend-dot.correct { background: #65b59c; }
+.legend-dot.wrong { background: #d77a82; }
+.legend-dot.marked { background: #e6b958; }
+.question-map { display: grid; grid-template-columns: repeat(5, 1fr); gap: 7px; max-height: 300px; overflow-y: auto; padding: 2px; }
+.map-button { position: relative; aspect-ratio: 1; border: 1px solid #e5e6e2; border-radius: 7px; color: #818797; background: #fafaf8; cursor: pointer; font-size: 9px; font-variant-numeric: tabular-nums; }
+.map-button:hover { border-color: var(--chapter-color); }
+.map-button.answered { color: #fff; border-color: #9da6b8; background: #9da6b8; }
+.map-button.correct { color: #fff; border-color: #65b59c; background: #65b59c; }
+.map-button.wrong { color: #fff; border-color: #d77a82; background: #d77a82; }
+.map-button.current { outline: 2px solid var(--chapter-color); outline-offset: 2px; }
+.map-button.bookmarked::after { content: ""; position: absolute; width: 5px; height: 5px; right: 2px; top: 2px; border-radius: 50%; background: #f2c66d; box-shadow: 0 0 0 1px #fff; }
+.type-breakdown { margin-top: 18px; padding-top: 16px; border-top: 1px solid #efefeb; }
+.type-row { display: flex; justify-content: space-between; margin: 8px 0; color: var(--muted); font-size: 9px; }
+.type-row strong { color: var(--ink); font-weight: 600; }
+.reset-chapter-button { width: 100%; margin-top: 13px; padding: 9px; border: 1px dashed #d8d9d3; border-radius: 8px; color: var(--soft); background: transparent; cursor: pointer; font-size: 9px; }
+.reset-chapter-button:hover { color: var(--red); border-color: #ddb4b7; }
+.empty-state { padding: 70px 25px; border: 1px dashed #d7d8d2; border-radius: var(--radius); text-align: center; background: rgba(255,255,255,.6); }
+.empty-state > div { color: var(--green); font-size: 35px; }
+.empty-state h3 { margin: 12px 0 5px; font-size: 17px; }
+.empty-state p { margin: 0 0 20px; color: var(--muted); font-size: 11px; }
+
+.score-dialog { width: min(520px, calc(100vw - 30px)); padding: 34px; border: 0; border-radius: 22px; color: var(--ink); background: #fff; box-shadow: 0 30px 100px rgba(16,25,43,.25); }
+.score-dialog::backdrop { background: rgba(17,26,43,.52); backdrop-filter: blur(4px); }
+.dialog-close { position: absolute; right: 15px; top: 12px; border: 0; color: var(--soft); background: transparent; cursor: pointer; font-size: 25px; }
+.score-header { text-align: center; }
+.score-header > span { color: var(--purple); font-size: 8px; font-weight: 700; letter-spacing: .16em; }
+.score-header h2 { margin: 8px 0 20px; font-size: 22px; }
+.score-ring { width: 125px; height: 125px; margin: 0 auto 20px; display: grid; place-items: center; border-radius: 50%; background: conic-gradient(var(--chapter-color) var(--score-angle), #ecece7 0); position: relative; }
+.score-ring::after { content: ""; position: absolute; inset: 9px; border-radius: 50%; background: #fff; }
+.score-ring div { position: relative; z-index: 1; }
+.score-ring strong { display: block; font-size: 32px; letter-spacing: -.05em; text-align: center; }
+.score-ring small { display: block; color: var(--soft); font-size: 9px; text-align: center; }
+.score-summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 18px 0; }
+.score-summary div { padding: 12px; border-radius: 10px; background: #f6f6f2; text-align: center; }
+.score-summary strong { display: block; font-size: 20px; }
+.score-summary span { color: var(--soft); font-size: 9px; }
+.score-types { margin: 18px 0; }
+.score-type-row { display: grid; grid-template-columns: 70px 1fr 45px; align-items: center; gap: 9px; margin: 12px 0; font-size: 10px; }
+.score-type-track { height: 6px; border-radius: 5px; background: #eeeeea; overflow: hidden; }
+.score-type-fill { height: 100%; border-radius: inherit; background: var(--chapter-color); }
+.score-type-row strong { text-align: right; font-size: 9px; }
+.score-actions { display: flex; gap: 10px; justify-content: center; margin-top: 24px; }
+.toast { position: fixed; z-index: 100; left: 50%; bottom: 28px; transform: translate(-50%, 15px); padding: 10px 18px; border-radius: 9px; color: #fff; background: #24324a; box-shadow: 0 8px 30px rgba(24,32,52,.2); font-size: 11px; opacity: 0; pointer-events: none; transition: .25s ease; }
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+@media (min-width: 1500px) {
+  .view { padding-left: 58px; padding-right: 58px; }
+  .hero { min-height: 350px; }
+}
+@media (max-width: 1100px) {
+  .sidebar { width: 220px; }
+  .main-content { margin-left: 220px; }
+  .view { padding: 30px 28px 50px; }
+  .topbar { padding: 0 28px; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-visual { display: none; }
+  .chapter-grid { grid-template-columns: 1fr; }
+  .chapter-card { display: grid; grid-template-columns: 1fr 1fr; column-gap: 25px; }
+  .chapter-number, .chapter-card-footer { grid-column: 1 / -1; }
+  .chapter-description { min-height: 0; }
+  .practice-layout { grid-template-columns: minmax(0, 1fr) 220px; }
+  .question-map-card { padding: 15px; }
+  .keyboard-hint { display: none; }
+}
+@media (max-width: 820px) {
+  .sidebar { transform: translateX(-100%); width: 248px; transition: transform .25s ease; }
+  .sidebar.open { transform: translateX(0); }
+  .sidebar-backdrop.open { display: block; position: fixed; inset: 0; z-index: 25; background: rgba(17,26,43,.4); }
+  .main-content { margin-left: 0; }
+  .mobile-menu { display: block !important; }
+  .topbar { padding: 0 20px; }
+  .breadcrumb { margin-right: auto; margin-left: 12px; }
+  .view { padding: 25px 20px 45px; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .practice-layout { grid-template-columns: 1fr; }
+  .question-map-card { position: static; order: -1; }
+  .question-map { grid-template-columns: repeat(10, 1fr); max-height: none; }
+  .map-legend { grid-template-columns: repeat(4, auto); }
+  .type-breakdown { display: flex; gap: 18px; flex-wrap: wrap; }
+  .type-row { gap: 7px; }
+  .reset-chapter-button { width: auto; padding: 8px 15px; }
+  .quiz-heading { align-items: flex-start; }
+}
+@media (max-width: 560px) {
+  .topbar { height: 58px; padding: 0 14px; }
+  .topbar-actions { gap: 8px; }
+  .breadcrumb span, .breadcrumb b { display: none; }
+  .view { padding: 22px 14px 40px; }
+  .hero { padding: 15px 4px 28px; min-height: 0; }
+  .hero h1 { font-size: 39px; }
+  .hero-copy > p { font-size: 12px; }
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .stats-grid { gap: 9px; margin-bottom: 32px; }
+  .stat-card { padding: 15px; }
+  .stat-card strong { font-size: 23px; }
+  .chapter-card { display: block; padding: 20px; }
+  .chapter-description { min-height: 0; }
+  .section-caption { display: none; }
+  .method-note { padding: 15px; }
+  .quiz-heading { display: block; }
+  .quiz-heading h1 { font-size: 25px; }
+  .quiz-heading-actions { margin-top: 18px; }
+  .quiz-heading-actions button { flex: 1; padding: 10px; }
+  .progress-stats { gap: 14px; flex-wrap: wrap; }
+  .progress-stats .accuracy { margin-left: 0; }
+  .question-toolbar { align-items: flex-end; gap: 8px; }
+  .filter-button { padding: 6px 9px; }
+  .question-card { padding: 21px 17px 17px; }
+  .question-text { font-size: 16px; }
+  .option-button { padding: 10px; gap: 10px; }
+  .option-text { font-size: 11px; }
+  .question-map { grid-template-columns: repeat(5, 1fr); }
+  .map-legend { grid-template-columns: 1fr 1fr; }
+  .score-dialog { padding: 28px 20px; }
+}
+
+</style>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="章节导航">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">i<span>%</span></div>
+        <div><strong>利率学习室</strong><small>INTEREST RATE STUDIO</small></div>
+      </div>
+      <button class="nav-item active" id="homeNav" type="button">
+        <span class="nav-icon">⌂</span><span>学习总览</span>
+      </button>
+      <div class="nav-label">章节练习</div>
+      <nav id="chapterNav"></nav>
+      <div class="sidebar-note">
+        <div class="note-icon">✦</div>
+        <p>先理解，再记忆。<br>每道题都附有考点解析与课件页码。</p>
+      </div>
+      <div class="sidebar-footer">
+        <span class="save-dot"></span><span>学习进度自动保存在本机</span>
+      </div>
+    </aside>
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+    <main class="main-content">
+      <header class="topbar">
+        <button class="icon-button mobile-menu" id="menuButton" aria-label="打开章节导航" type="button">☰</button>
+        <div class="breadcrumb" id="breadcrumb"><span>金融学</span><b>/</b><strong>学习总览</strong></div>
+        <div class="topbar-actions">
+          <span class="keyboard-hint">快捷键 1–4 作答 · ← → 切题</span>
+          <button class="text-button" id="resetAllButton" type="button">清空记录</button>
+        </div>
+      </header>
+
+      <section id="homeView" class="view home-view">
+        <div class="hero">
+          <div class="hero-copy">
+            <div class="eyebrow"><span></span> MONEY, BANKING & FINANCIAL MARKETS</div>
+            <h1>把利率学明白，<br><em>一题一题。</em></h1>
+            <p>覆盖 Ch02–Ch04 的三章核心考点。按重要程度与常见考法配置概念、计算和情境题，答题后立即查看解析。</p>
+            <div class="hero-actions">
+              <button class="primary-button" id="startButton" type="button">开始 Chapter 2 <span>→</span></button>
+              <button class="secondary-button" id="continueButton" type="button">继续上次练习</button>
+            </div>
+          </div>
+          <div class="hero-visual" aria-hidden="true">
+            <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+            <div class="formula-card formula-main"><span>PRICE × YIELD</span><strong>P = Σ <i>CF<sub>t</sub></i> / (1+i)<sup>t</sup></strong><small>现金流与利率之间的桥梁</small></div>
+            <div class="formula-chip chip-one">PV → FV</div>
+            <div class="formula-chip chip-two">i = r + π<sup>e</sup></div>
+            <div class="formula-chip chip-three">B = C′D</div>
+          </div>
+        </div>
+
+        <div class="stats-grid" id="overallStats"></div>
+
+        <div class="section-heading">
+          <div><span class="section-kicker">YOUR COURSE</span><h2>三章题库</h2></div>
+          <span class="section-caption">每章 50 题 · 共 150 题</span>
+        </div>
+        <div class="chapter-grid" id="chapterCards"></div>
+
+        <div class="method-note">
+          <div class="method-icon">◎</div>
+          <div><strong>题型如何分配？</strong><p>依据课件篇幅、公式密度与常见考试方式：Ch02 提高计算与应用比重；Ch03 突出曲线移动和情境判断；Ch04 均衡覆盖理论比较、矩阵定价与 Bootstrap 计算。所有题均为单项选择题。</p></div>
+        </div>
+      </section>
+
+      <section id="quizView" class="view quiz-view hidden">
+        <div class="quiz-heading">
+          <div>
+            <div class="eyebrow compact" id="quizEyebrow"></div>
+            <h1 id="quizTitle"></h1>
+            <p id="quizDescription"></p>
+          </div>
+          <div class="quiz-heading-actions">
+            <button class="secondary-button" id="shuffleButton" type="button">⇄ 随机题序</button>
+            <button class="primary-button" id="scoreButton" type="button">查看成绩</button>
+          </div>
+        </div>
+
+        <div class="chapter-progress-card">
+          <div class="progress-stats" id="chapterProgressStats"></div>
+          <div class="progress-track"><div class="progress-fill" id="chapterProgressFill"></div></div>
+        </div>
+
+        <div class="practice-layout">
+          <div class="question-column">
+            <div class="question-toolbar">
+              <div class="filter-group" id="filterGroup" aria-label="筛选题目">
+                <button class="filter-button active" data-filter="all" type="button">全部</button>
+                <button class="filter-button" data-filter="unanswered" type="button">未答</button>
+                <button class="filter-button" data-filter="wrong" type="button">错题</button>
+                <button class="filter-button" data-filter="bookmarked" type="button">收藏</button>
+              </div>
+              <span class="question-position" id="questionPosition"></span>
+            </div>
+
+            <article class="question-card" id="questionCard">
+              <div class="question-meta" id="questionMeta"></div>
+              <h2 class="question-text" id="questionText"></h2>
+              <div class="options-list" id="optionsList"></div>
+              <div class="feedback hidden" id="feedback"></div>
+              <div class="question-footer">
+                <button class="bookmark-button" id="bookmarkButton" type="button"><span>☆</span> 收藏本题</button>
+                <span class="source-label" id="sourceLabel"></span>
+              </div>
+            </article>
+
+            <div class="question-navigation">
+              <button class="secondary-button" id="prevButton" type="button">← 上一题</button>
+              <button class="primary-button" id="nextButton" type="button">下一题 →</button>
+            </div>
+            <div class="empty-state hidden" id="emptyState">
+              <div>✓</div><h3>这个筛选下暂时没有题目</h3><p>切换上方筛选条件，或先完成更多练习。</p>
+              <button class="secondary-button" id="showAllButton" type="button">查看全部题目</button>
+            </div>
+          </div>
+
+          <aside class="question-map-card">
+            <div class="map-heading"><div><span>QUESTION MAP</span><h3>本章题号</h3></div><strong id="mapCount"></strong></div>
+            <div class="map-legend"><span><i class="legend-dot answered"></i>已答</span><span><i class="legend-dot correct"></i>答对</span><span><i class="legend-dot wrong"></i>答错</span><span><i class="legend-dot marked"></i>收藏</span></div>
+            <div class="question-map" id="questionMap"></div>
+            <div class="type-breakdown" id="typeBreakdown"></div>
+            <button class="reset-chapter-button" id="resetChapterButton" type="button">重新作答本章</button>
+          </aside>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <dialog class="score-dialog" id="scoreDialog">
+    <button class="dialog-close" id="closeScoreButton" aria-label="关闭成绩" type="button">×</button>
+    <div id="scoreContent"></div>
+  </dialog>
+  <div class="toast" id="toast" role="status"></div>
+
+  <script>
+window.QUIZ_DATA = [
+  {
+    "id": "ch02",
+    "chapter": "Chapter 2",
+    "title": "利率的含义",
+    "englishTitle": "The Meaning of Interest Rate",
+    "description": "重点训练现值与终值、年化利率、到期收益率、债券回报及实际利率。计算与应用题占比较高。",
+    "color": "#6d5dfc",
+    "questions": [
+      {
+        "type": "概念辨析",
+        "topic": "利率的构成",
+        "page": 7,
+        "q": "Which of the following is NOT normally compensated for by the interest charged on a loan?",
+        "options": [
+          "The opportunity cost of postponing consumption",
+          "The loss of purchasing power caused by inflation",
+          "The borrower's default risk",
+          "All of the borrower's operating costs"
+        ],
+        "answer": 3,
+        "explanation": "利息通常补偿等待、通胀和违约风险，并不要求覆盖借款人的全部经营成本。",
+        "answerZh": "借款人全部经营成本"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "复利",
+        "page": 8,
+        "q": "Which statement best defines compounding?",
+        "options": [
+          "Interest is calculated only on the original principal",
+          "Future cash flows are discounted to their present value",
+          "Interest earns additional interest",
+          "All interest is withdrawn at the end of each period"
+        ],
+        "answer": 2,
+        "explanation": "复利是“利滚利”：已产生的利息加入本金并继续计息。",
+        "answerZh": "利息也继续产生利息"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "现值",
+        "page": 11,
+        "q": "What is the relationship between discounting and compounding?",
+        "options": [
+          "They are exactly the same process",
+          "Discounting is the reverse of compounding",
+          "Discounting applies only to stocks",
+          "Compounding applies only to zero-coupon bonds"
+        ],
+        "answer": 1,
+        "explanation": "复利把现值推向终值；贴现把未来资金折回当前，二者互为逆过程。",
+        "answerZh": "贴现是复利的逆过程"
+      },
+      {
+        "type": "计算应用",
+        "topic": "终值",
+        "page": 10,
+        "q": "If $1,000 is invested for 3 years at an annually compounded rate of 4%, what is its future value closest to?",
+        "options": [
+          "$1,120.00",
+          "$1,122.11",
+          "$1,124.86",
+          "$1,136.00"
+        ],
+        "answer": 2,
+        "explanation": "FV = 1,000 × (1.04)³ = $1,124.86。",
+        "answerZh": "$1,124.86"
+      },
+      {
+        "type": "计算应用",
+        "topic": "现值",
+        "page": 12,
+        "q": "At an annual discount rate of 10%, what is the present value of $1,000 to be received in 5 years closest to?",
+        "options": [
+          "$500.00",
+          "$620.92",
+          "$783.53",
+          "$909.09"
+        ],
+        "answer": 1,
+        "explanation": "PV = 1,000 / (1.10)⁵ ≈ $620.92。",
+        "answerZh": "$620.92"
+      },
+      {
+        "type": "计算应用",
+        "topic": "多期现金流现值",
+        "page": 13,
+        "q": "At a discount rate of 10%, you will receive $1,000 in 1 year and another $1,000 in 5 years. What is the total present value closest to?",
+        "options": [
+          "$1,530.01",
+          "$1,620.92",
+          "$1,818.18",
+          "$2,000.00"
+        ],
+        "answer": 0,
+        "explanation": "总现值 = 1,000/1.10 + 1,000/(1.10)⁵ = 909.09 + 620.92 = $1,530.01。",
+        "answerZh": "$1,530.01"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "持有期回报",
+        "page": 15,
+        "q": "What is normally used as the denominator in the holding-period return (HPR)?",
+        "options": [
+          "The ending price",
+          "The beginning price",
+          "The face value",
+          "The cash flow during the period"
+        ],
+        "answer": 1,
+        "explanation": "HPR = [期末现金流 +（期末价格－期初价格）] / 期初价格。",
+        "answerZh": "期初价格"
+      },
+      {
+        "type": "计算应用",
+        "topic": "股票持有期回报",
+        "page": 17,
+        "q": "A stock is purchased for $25, sold for $27, and pays a dividend of $1.25. What is its HPR?",
+        "options": [
+          "5%",
+          "8%",
+          "13%",
+          "15%"
+        ],
+        "answer": 2,
+        "explanation": "HPR = [1.25 + (27－25)]/25 = 13%，其中资本利得率 8%，股利收益率 5%。",
+        "answerZh": "13%"
+      },
+      {
+        "type": "计算应用",
+        "topic": "平均回报",
+        "page": 20,
+        "q": "A project's holding-period returns over three years are 20%, −15%, and 40%. What is its arithmetic average return?",
+        "options": [
+          "12.6%",
+          "15%",
+          "20%",
+          "45%"
+        ],
+        "answer": 1,
+        "explanation": "算术平均 = (20%－15%+40%)/3 = 15%。",
+        "answerZh": "15%"
+      },
+      {
+        "type": "计算应用",
+        "topic": "几何平均回报",
+        "page": 20,
+        "q": "For the same three annual returns, what is the geometric average return closest to?",
+        "options": [
+          "11.3%",
+          "12.6%",
+          "15%",
+          "42.8%"
+        ],
+        "answer": 1,
+        "explanation": "几何平均 = [(1.20)(0.85)(1.40)]^(1/3)－1 ≈ 12.6%。",
+        "answerZh": "12.6%"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "内部收益率",
+        "page": 21,
+        "q": "The internal rate of return (IRR) is the discount rate that sets which quantity equal to zero?",
+        "options": [
+          "The project's future value",
+          "The sum of the present values of net cash flows",
+          "The cash flow in every period",
+          "The arithmetic average return"
+        ],
+        "answer": 1,
+        "explanation": "IRR 令项目全部净现金流的现值之和（NPV）等于零。",
+        "answerZh": "净现金流现值之和"
+      },
+      {
+        "type": "情境分析",
+        "topic": "回报指标选择",
+        "page": 22,
+        "q": "Which measure is generally most appropriate for summarizing a project's own multi-period compound growth performance?",
+        "options": [
+          "Arithmetic average return",
+          "Geometric average return",
+          "Current coupon yield",
+          "Nominal interest rate"
+        ],
+        "answer": 1,
+        "explanation": "几何平均反映逐期复合后的等效每期回报；算术平均更适合单期预测等用途。",
+        "answerZh": "几何平均回报"
+      },
+      {
+        "type": "情境分析",
+        "topic": "资金加权回报",
+        "page": 22,
+        "q": "An investor contributes a large additional amount immediately before a poor-performing year. Other things equal, what is the most likely effect on the dollar-weighted return?",
+        "options": [
+          "It exceeds the time-weighted return because more capital is invested",
+          "It falls below the time-weighted return because more capital experiences the loss",
+          "It must equal the geometric average return",
+          "It is unaffected by the timing of additional contributions"
+        ],
+        "answer": 1,
+        "explanation": "资金加权回报考虑各期实际投入资本规模，差年份前追加资金会拉低投资者实际体验回报。",
+        "answerZh": "低于时间加权回报，因为更多资金经历亏损"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "APR 与 EAR",
+        "page": 23,
+        "q": "Which statement about APR and EAR is correct?",
+        "options": [
+          "APR always includes compounding",
+          "EAR ignores compounding",
+          "APR equals the periodic rate multiplied by the number of periods per year",
+          "EAR is always lower than APR"
+        ],
+        "answer": 2,
+        "explanation": "APR 按简单年化，不考虑复利；EAR 衡量实际年度增长，正利率且一年复利多次时通常高于 APR。",
+        "answerZh": "APR 是每期利率乘每年期数"
+      },
+      {
+        "type": "计算应用",
+        "topic": "月度回报年化",
+        "page": 24,
+        "q": "An investment earns a monthly return of 1.01%. What is its APR, using simple annualization?",
+        "options": [
+          "1.01%",
+          "12.00%",
+          "12.12%",
+          "12.82%"
+        ],
+        "answer": 2,
+        "explanation": "APR = 1.01% × 12 = 12.12%；12.82% 是考虑月复利后的 EAR。",
+        "answerZh": "12.12%"
+      },
+      {
+        "type": "计算应用",
+        "topic": "APR 转 EAR",
+        "page": 25,
+        "q": "If the APR is 12% with monthly compounding, what is the EAR closest to?",
+        "options": [
+          "12.00%",
+          "12.36%",
+          "12.68%",
+          "13.20%"
+        ],
+        "answer": 2,
+        "explanation": "EAR = (1 + 0.12/12)¹²－1 ≈ 12.68%。",
+        "answerZh": "12.68%"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "报价利率",
+        "page": 25,
+        "q": "Knowing only that a product has an APR of 8% is insufficient to determine its actual one-year return. What additional information is required?",
+        "options": [
+          "The currency of the principal",
+          "The compounding frequency",
+          "The investor's wealth",
+          "The coupon rate"
+        ],
+        "answer": 1,
+        "explanation": "APR 必须结合每年复利次数 m，才能计算 EAR = (1+APR/m)^m－1。",
+        "answerZh": "复利频率"
+      },
+      {
+        "type": "情境分析",
+        "topic": "复利频率",
+        "page": 26,
+        "q": "With the APR fixed at 10%, compounding becomes more frequent: annually, quarterly, monthly, and then daily. What normally happens to the account value after one year?",
+        "options": [
+          "It decreases at each step",
+          "It increases at each step and approaches a finite limit",
+          "It remains exactly unchanged",
+          "It grows without bound"
+        ],
+        "answer": 1,
+        "explanation": "利息更早开始计息使终值上升，但增幅递减并趋近连续复利的有限结果。",
+        "answerZh": "逐次上升并趋近有限极限"
+      },
+      {
+        "type": "计算应用",
+        "topic": "连续复利",
+        "page": 26,
+        "q": "At a continuously compounded annual rate of 10%, what is the value of $100 after one year closest to?",
+        "options": [
+          "$110.00",
+          "$110.38",
+          "$110.47",
+          "$110.52"
+        ],
+        "answer": 3,
+        "explanation": "FV = 100e^0.10 ≈ $110.5171。",
+        "answerZh": "$110.52"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "连续复利极限",
+        "page": 27,
+        "q": "As m approaches infinity, what is the limit of (1 + r/m)^m?",
+        "options": [
+          "1 + r",
+          "r²",
+          "e^r",
+          "Infinity"
+        ],
+        "answer": 2,
+        "explanation": "这是连续复利的核心极限：lim(1+r/m)^m = e^r。",
+        "answerZh": "e^r"
+      },
+      {
+        "type": "计算应用",
+        "topic": "连续复利转换",
+        "page": 28,
+        "q": "If the continuously compounded annual rate is 8%, what is the corresponding EAR closest to?",
+        "options": [
+          "7.696%",
+          "8.000%",
+          "8.329%",
+          "8.681%"
+        ],
+        "answer": 2,
+        "explanation": "EAR = e^0.08－1 ≈ 8.329%。",
+        "answerZh": "8.329%"
+      },
+      {
+        "type": "计算应用",
+        "topic": "EAR 转连续复利",
+        "page": 28,
+        "q": "An investment has an EAR of 10.25%. What is its equivalent continuously compounded annual rate closest to?",
+        "options": [
+          "9.758%",
+          "10.000%",
+          "10.250%",
+          "10.786%"
+        ],
+        "answer": 0,
+        "explanation": "i_cc = ln(1+EAR) = ln(1.1025) ≈ 9.758%。",
+        "answerZh": "9.758%"
+      },
+      {
+        "type": "计算应用",
+        "topic": "利率转换",
+        "page": 29,
+        "q": "A continuously compounded annual rate of 8% is equivalent to which APR with quarterly compounding?",
+        "options": [
+          "7.920%",
+          "8.000%",
+          "8.081%",
+          "8.329%"
+        ],
+        "answer": 2,
+        "explanation": "季度增长因子为 e^0.02，APR₄ = 4(e^0.02－1) ≈ 8.081%。",
+        "answerZh": "8.081%"
+      },
+      {
+        "type": "情境分析",
+        "topic": "等效利率",
+        "page": 31,
+        "q": "Two annualized rate quotations represent the same actual annual return only when they have the same what?",
+        "options": [
+          "Numerical APR",
+          "Compounding frequency",
+          "Implied EAR",
+          "Payment month"
+        ],
+        "answer": 2,
+        "explanation": "不同报价方式是否等效，应比较其隐含的 EAR，而不是只比较名义数字。",
+        "answerZh": "隐含 EAR 相同"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "债务与权益",
+        "page": 33,
+        "q": "Which of the following is an equity claim rather than a debt instrument?",
+        "options": [
+          "A simple loan",
+          "A fixed-payment loan",
+          "Common stock",
+          "A coupon bond"
+        ],
+        "answer": 2,
+        "explanation": "普通股代表对企业的部分所有权；其余均为债务工具。",
+        "answerZh": "普通股"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "简单贷款",
+        "page": 36,
+        "q": "Which cash-flow pattern is characteristic of a simple loan?",
+        "options": [
+          "Equal periodic payments of principal and interest",
+          "A single payment of principal plus interest at maturity",
+          "Fixed coupon payments forever",
+          "No payment obligation at any time"
+        ],
+        "answer": 1,
+        "explanation": "简单贷款在期初提供本金，借款人在约定到期日一次性偿还本金加利息。",
+        "answerZh": "到期一次性偿还本金和利息"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "固定支付贷款",
+        "page": 37,
+        "q": "What does each periodic payment on a fixed-payment loan normally consist of?",
+        "options": [
+          "Interest only",
+          "Principal only",
+          "Principal and interest",
+          "Dividends and capital gains"
+        ],
+        "answer": 2,
+        "explanation": "固定支付贷款在到期前定期等额还款，每期款项包含部分本金与利息。",
+        "answerZh": "本金和利息"
+      },
+      {
+        "type": "计算应用",
+        "topic": "固定支付贷款",
+        "page": 38,
+        "q": "For a loan with principal P, effective periodic rate i, and n end-of-period payments, which formula gives the fixed payment?",
+        "options": [
+          "Pmt = P/[1 − (1+i)^(−n)]",
+          "Pmt = Pi/[1 − (1+i)^(−n)]",
+          "Pmt = P(1+i)^n",
+          "Pmt = P/i"
+        ],
+        "answer": 1,
+        "explanation": "本金等于各期还款现值之和，整理得 Pmt = Pi/[1－(1+i)^(-n)]。",
+        "answerZh": "Pmt = Pi/[1－(1+i)^(-n)]"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "息票债券",
+        "page": 39,
+        "q": "A bond pays an annual coupon of $80 and has a face value of $1,000. What is its coupon rate?",
+        "options": [
+          "0.8%",
+          "8%",
+          "10%",
+          "12.5%"
+        ],
+        "answer": 1,
+        "explanation": "票面利率 = 年票息/面值 = 80/1,000 = 8%，与当前市场价格无关。",
+        "answerZh": "8%"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "零息债券",
+        "page": 43,
+        "q": "Where does the return on a discount bond, or zero-coupon bond, primarily come from?",
+        "options": [
+          "Periodic coupon payments",
+          "Dividends",
+          "The difference between the purchase price and the face value paid at maturity",
+          "Perpetual rental income"
+        ],
+        "answer": 2,
+        "explanation": "零息债券不支付期间票息，以低于面值的价格买入并在到期按面值偿付。",
+        "answerZh": "买入价与到期面值之间的差额"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "到期收益率",
+        "page": 45,
+        "q": "Which statement most accurately defines yield to maturity (YTM)?",
+        "options": [
+          "The bond's coupon rate",
+          "The single discount rate that equates the present value of all promised cash flows to the current market price",
+          "The annual coupon divided by the current price",
+          "The bond's realized return over the past year"
+        ],
+        "answer": 1,
+        "explanation": "YTM 是以当前价格为初始投资、基于承诺现金流计算的 IRR。",
+        "answerZh": "使全部承诺现金流现值等于当前市场价格的单一贴现率"
+      },
+      {
+        "type": "计算应用",
+        "topic": "简单贷款 YTM",
+        "page": 46,
+        "q": "A $100 simple loan requires a repayment of $110 in one year. What is its YTM?",
+        "options": [
+          "9.09%",
+          "10%",
+          "11%",
+          "110%"
+        ],
+        "answer": 1,
+        "explanation": "100 = 110/(1+i)，所以 i = 110/100－1 = 10%。",
+        "answerZh": "10%"
+      },
+      {
+        "type": "计算应用",
+        "topic": "零息债券 YTM",
+        "page": 56,
+        "q": "A one-year zero-coupon bond has a face value of $1,000 and a current price of $900. What is its YTM closest to?",
+        "options": [
+          "9.09%",
+          "10.00%",
+          "11.11%",
+          "12.50%"
+        ],
+        "answer": 2,
+        "explanation": "i = (F－P)/P = (1,000－900)/900 = 11.11%。",
+        "answerZh": "11.11%"
+      },
+      {
+        "type": "计算应用",
+        "topic": "零息债券 YTM",
+        "page": 56,
+        "q": "A one-year zero-coupon bond has a face value of $10,000 and a current price of $9,200. What is its YTM closest to?",
+        "options": [
+          "8.00%",
+          "8.70%",
+          "9.20%",
+          "10.00%"
+        ],
+        "answer": 1,
+        "explanation": "i = (10,000－9,200)/9,200 ≈ 8.70%。",
+        "answerZh": "8.70%"
+      },
+      {
+        "type": "情境分析",
+        "topic": "价格与 YTM",
+        "page": 49,
+        "q": "An annual-pay coupon bond has a coupon rate of 10% and a YTM of 12.25%. Other things equal, where should its price be relative to par?",
+        "options": [
+          "Below face value",
+          "Exactly equal to face value",
+          "Above face value",
+          "It cannot be determined"
+        ],
+        "answer": 0,
+        "explanation": "YTM 高于票面利率时，债券折价交易；课件算例价格为 $889.20，低于 $1,000 面值。",
+        "answerZh": "面值以下"
+      },
+      {
+        "type": "情境分析",
+        "topic": "平价债券",
+        "page": 51,
+        "q": "If a coupon bond is priced exactly at face value, what is the relationship between its YTM and coupon rate?",
+        "options": [
+          "YTM is higher",
+          "YTM is lower",
+          "They are equal",
+          "YTM must be zero"
+        ],
+        "answer": 2,
+        "explanation": "平价债券的到期收益率等于票面利率。",
+        "answerZh": "二者相等"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "永续债券",
+        "page": 52,
+        "q": "Which feature characterizes a consol, or perpetuity?",
+        "options": [
+          "It repays all principal at maturity",
+          "It has no maturity date and pays a fixed coupon forever",
+          "It pays no cash flows",
+          "Its coupon doubles every year"
+        ],
+        "answer": 1,
+        "explanation": "永续债券没有到期日、不偿还本金，按固定金额永久付息，价格为 C/i。",
+        "answerZh": "无到期日并永久支付固定票息"
+      },
+      {
+        "type": "计算应用",
+        "topic": "永续债券定价",
+        "page": 90,
+        "q": "A perpetuity pays an annual coupon of $50 and has a YTM of 2.5%. What is its price?",
+        "options": [
+          "$1,000",
+          "$1,250",
+          "$2,000",
+          "$2,500"
+        ],
+        "answer": 2,
+        "explanation": "P = C/i = 50/0.025 = $2,000。",
+        "answerZh": "$2,000"
+      },
+      {
+        "type": "情境分析",
+        "topic": "永续债券价格",
+        "page": 90,
+        "q": "If the YTM on the perpetuity above doubles from 2.5% to 5%, what happens to its price?",
+        "options": [
+          "It doubles to $4,000",
+          "It remains unchanged",
+          "It falls by half to $1,000",
+          "It falls to zero"
+        ],
+        "answer": 2,
+        "explanation": "永续债券价格与收益率成反比，收益率翻倍使价格由 $2,000 降至 $1,000。",
+        "answerZh": "减半至 $1,000"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "当期收益率",
+        "page": 53,
+        "q": "What does the current yield equal?",
+        "options": [
+          "Annual coupon divided by current price",
+          "Annual coupon divided by face value",
+          "Capital gain divided by current price",
+          "Face value divided by current price"
+        ],
+        "answer": 0,
+        "explanation": "当期收益率 i_c = C/P。它忽略资本利得或损失，并不等同于一般债券的 YTM。",
+        "answerZh": "年票息/当前价格"
+      },
+      {
+        "type": "情境分析",
+        "topic": "当期收益率局限",
+        "page": 65,
+        "q": "Why is the current yield generally NOT a good substitute for YTM on a short-term bond?",
+        "options": [
+          "It uses the wrong coupon",
+          "It ignores expected capital gains or losses",
+          "It always sets the price equal to face value",
+          "It applies only to stocks"
+        ],
+        "answer": 1,
+        "explanation": "越接近到期，价格向面值收敛带来的资本损益相对重要，而当期收益率完全忽略该项。",
+        "answerZh": "它忽略预期资本利得或损失"
+      },
+      {
+        "type": "情境分析",
+        "topic": "负收益率",
+        "page": 57,
+        "q": "Which statement about negative YTM is correct?",
+        "options": [
+          "It can occur when a zero-coupon bond's price exceeds its face value",
+          "It is impossible for any bond",
+          "It can easily occur for a standard perpetuity with positive coupons",
+          "It requires a negative coupon rate"
+        ],
+        "answer": 0,
+        "explanation": "一年期零息债券 i=(F－P)/P，P>F 时 i<0；一年期息票债券在 C+F<P 时也可能为负。",
+        "answerZh": "零息债券价格高于面值时可能出现"
+      },
+      {
+        "type": "情境分析",
+        "topic": "价格与利率",
+        "page": 60,
+        "q": "When interest rates on newly issued bonds rise, what normally happens to the price of an existing bond with unchanged cash flows?",
+        "options": [
+          "It rises to remain competitive",
+          "It falls because its existing coupons become less attractive",
+          "It remains unchanged because its coupon is fixed",
+          "It first falls to zero and then recovers"
+        ],
+        "answer": 1,
+        "explanation": "既有债券现金流既定，市场要求收益率上升只能通过价格下降实现。",
+        "answerZh": "下降，因为旧票息吸引力下降"
+      },
+      {
+        "type": "计算应用",
+        "topic": "债券持有期回报",
+        "page": 72,
+        "q": "A bond is purchased for $1,000, pays a $50 coupon, and is worth $1,169.84 at year-end. What is its one-year return closest to?",
+        "options": [
+          "5.0%",
+          "16.98%",
+          "22.0%",
+          "27.0%"
+        ],
+        "answer": 2,
+        "explanation": "R = [50+(1,169.84－1,000)]/1,000 ≈ 21.984% ≈ 22.0%。",
+        "answerZh": "22.0%"
+      },
+      {
+        "type": "计算应用",
+        "topic": "债券持有期回报",
+        "page": 72,
+        "q": "If the bond above instead ends the year at $864.09, with the same $50 coupon, what is its one-year return closest to?",
+        "options": [
+          "−13.6%",
+          "−8.6%",
+          "5.0%",
+          "8.6%"
+        ],
+        "answer": 1,
+        "explanation": "R = [50+(864.09－1,000)]/1,000 ≈ －8.6%。",
+        "answerZh": "－8.6%"
+      },
+      {
+        "type": "情境分析",
+        "topic": "利率风险",
+        "page": 76,
+        "q": "When market interest rates rise by the same amount, which bonds normally experience the largest percentage price decline?",
+        "options": [
+          "Bonds with longer remaining maturities",
+          "Bonds with shorter remaining maturities",
+          "One-year bonds always decline the most",
+          "All maturities decline by exactly the same amount"
+        ],
+        "answer": 0,
+        "explanation": "期限越长，更多现金流受到贴现率变化影响，价格和回报通常越敏感。",
+        "answerZh": "剩余期限更长的债券"
+      },
+      {
+        "type": "情境分析",
+        "topic": "YTM 与实现回报",
+        "page": 79,
+        "q": "Which of the following is NOT required for a coupon bond's realized compound return to equal its initial YTM when held to maturity?",
+        "options": [
+          "Holding the bond to maturity",
+          "Receipt of all promised payments from the issuer",
+          "Reinvestment of every coupon at the initial YTM",
+          "A continuous rise in market interest rates over the bond's life"
+        ],
+        "answer": 3,
+        "explanation": "实现复合回报等于初始 YTM 需要持有到期、无违约且票息按初始 YTM 再投资，市场利率持续上升不是条件。",
+        "answerZh": "市场利率在存续期内持续上升"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "实际利率",
+        "page": 82,
+        "q": "Which inflation measure is used to calculate the ex ante real interest rate?",
+        "options": [
+          "Actual inflation",
+          "Expected inflation",
+          "The highest historical inflation rate",
+          "The coupon rate"
+        ],
+        "answer": 1,
+        "explanation": "事前实际利率在决策时形成，使用预期通胀；事后实际利率使用实际通胀。",
+        "answerZh": "预期通胀率"
+      },
+      {
+        "type": "计算应用",
+        "topic": "费雪方程",
+        "page": 83,
+        "q": "If the nominal interest rate is 9% and expected inflation is 4%, what is the expected real interest rate under the approximate Fisher equation used in the slides?",
+        "options": [
+          "4%",
+          "5%",
+          "9%",
+          "13%"
+        ],
+        "answer": 1,
+        "explanation": "r = i－π^e = 9%－4% = 5%。",
+        "answerZh": "5%"
+      },
+      {
+        "type": "情境分析",
+        "topic": "通胀意外与再分配",
+        "page": 84,
+        "q": "If actual inflation turns out to be higher than expected and the nominal interest rate is fixed, who generally gains and who loses?",
+        "options": [
+          "Lenders gain and borrowers lose",
+          "Borrowers gain and lenders lose",
+          "Both sides gain",
+          "Both sides lose"
+        ],
+        "answer": 1,
+        "explanation": "意外高通胀降低实际偿债负担和实际利息收入，因此借款人受益、贷款人受损。",
+        "answerZh": "借款人受益，贷款人受损"
+      }
+    ]
+  },
+  {
+    "id": "ch03",
+    "chapter": "Chapter 3",
+    "title": "利率的行为",
+    "englishTitle": "The Behavior of Interest Rates",
+    "description": "重点训练资产需求、债券与货币市场均衡、曲线移动、费雪效应及货币增长的四种效应。情境分析占比较高。",
+    "color": "#0f9f82",
+    "questions": [
+      {
+        "type": "概念辨析",
+        "topic": "资产需求",
+        "page": 7,
+        "q": "Which of the following is NOT one of the four determinants of asset demand listed in the slides?",
+        "options": [
+          "Wealth",
+          "Relative expected return",
+          "Relative risk",
+          "The issuer's fiscal year"
+        ],
+        "answer": 3,
+        "explanation": "四大因素是财富、相对预期回报、相对风险和相对流动性。",
+        "answerZh": "发行人的会计年度"
+      },
+      {
+        "type": "情境分析",
+        "topic": "财富效应",
+        "page": 8,
+        "q": "Other things equal, what normally happens to the quantity demanded of most financial assets when an investor's wealth increases?",
+        "options": [
+          "It increases",
+          "It decreases",
+          "It remains unchanged",
+          "It first decreases and then increases"
+        ],
+        "answer": 0,
+        "explanation": "财富增加意味着可配置的储蓄资源增多，通常提高资产需求量。",
+        "answerZh": "增加"
+      },
+      {
+        "type": "计算应用",
+        "topic": "预期回报",
+        "page": 10,
+        "q": "A bond has a 50% probability of returning 15% and a 50% probability of returning 5%. What is its expected return?",
+        "options": [
+          "5%",
+          "10%",
+          "15%",
+          "20%"
+        ],
+        "answer": 1,
+        "explanation": "E(R)=0.5×15%+0.5×5%=10%。",
+        "answerZh": "10%"
+      },
+      {
+        "type": "计算应用",
+        "topic": "预期回报",
+        "page": 10,
+        "q": "An asset has a 30% probability of returning 20% and a 70% probability of returning 4%. What is its expected return?",
+        "options": [
+          "8.8%",
+          "10.0%",
+          "12.0%",
+          "14.4%"
+        ],
+        "answer": 0,
+        "explanation": "E(R)=0.3×20%+0.7×4%=6%+2.8%=8.8%。",
+        "answerZh": "8.8%"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "风险态度",
+        "page": 11,
+        "q": "Two assets have the same expected return. Which one will a risk-averse investor normally choose?",
+        "options": [
+          "The one with higher risk",
+          "The one with lower risk",
+          "The one that necessarily has lower liquidity",
+          "Either one at random"
+        ],
+        "answer": 1,
+        "explanation": "风险厌恶者在预期回报相同的情况下偏好较低风险。",
+        "answerZh": "风险更低者"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "风险态度",
+        "page": 11,
+        "q": "What does a risk-neutral investor primarily consider when choosing between assets?",
+        "options": [
+          "Expected return only, ignoring risk",
+          "Risk only, ignoring return",
+          "The asset's name only",
+          "Always choosing the zero-risk asset"
+        ],
+        "answer": 0,
+        "explanation": "风险中性者只比较预期回报；风险爱好者才会为高风险可能性而偏好风险资产。",
+        "answerZh": "只看预期回报，忽略风险"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "流动性",
+        "page": 12,
+        "q": "Higher liquidity generally means that an asset can be converted more easily and quickly into what?",
+        "options": [
+          "Cash",
+          "Physical capital",
+          "Long-term debt",
+          "Credit risk"
+        ],
+        "answer": 0,
+        "explanation": "流动性是资产转化为现金的便利与速度，通常伴随较低交易成本和较易找到交易对手。",
+        "answerZh": "现金"
+      },
+      {
+        "type": "情境分析",
+        "topic": "相对资产需求",
+        "page": 6,
+        "q": "The bond market becomes more liquid while stock liquidity is unchanged. Other things equal, what is the most likely effect on the relative demand for stocks?",
+        "options": [
+          "It increases",
+          "It decreases",
+          "It remains unchanged",
+          "It becomes infinite"
+        ],
+        "answer": 1,
+        "explanation": "资产需求取决于相对属性。债券变得更有流动性，股票相对吸引力下降。",
+        "answerZh": "下降"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "分散化",
+        "page": 16,
+        "q": "What does diversification primarily involve?",
+        "options": [
+          "Investing all wealth in the highest-return asset",
+          "Spreading wealth across multiple assets to reduce risk",
+          "Holding only cash",
+          "Continuously buying the same asset"
+        ],
+        "answer": 1,
+        "explanation": "分散化通过持有多种资产降低组合风险，尤其能削弱个别资产特有的非系统性风险。",
+        "answerZh": "把财富分配到多种资产以降低风险"
+      },
+      {
+        "type": "情境分析",
+        "topic": "风险类型",
+        "page": 16,
+        "q": "A company-specific problem causes its stock price to fluctuate. What type of risk is this?",
+        "options": [
+          "Systematic risk",
+          "Idiosyncratic, or unsystematic, risk",
+          "Inflation risk",
+          "Pure money-supply risk"
+        ],
+        "answer": 1,
+        "explanation": "公司特定风险是 idiosyncratic/unsystematic risk；经济周期引起的共同市场波动属于系统性风险。",
+        "answerZh": "非系统性（特质）风险"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "零息债券回报",
+        "page": 19,
+        "q": "For a one-year zero-coupon bond with face value F and current price P, which formula gives its interest rate or expected return?",
+        "options": [
+          "(F − P)/P",
+          "(P − F)/F",
+          "F/P",
+          "P/F − 1"
+        ],
+        "answer": 0,
+        "explanation": "i = R^e = (F－P)/P。价格越低，给定面值下预期回报越高。",
+        "answerZh": "(F－P)/P"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "债券需求曲线",
+        "page": 20,
+        "q": "Why does a lower bond price increase the quantity of bonds demanded, other things equal?",
+        "options": [
+          "It raises the expected return and interest rate",
+          "It lowers the expected return",
+          "It raises the probability of default to 100%",
+          "It automatically reduces the face value"
+        ],
+        "answer": 0,
+        "explanation": "价格下降意味着 (F－P)/P 上升，债券相对预期回报提高，因此需求量增加。",
+        "answerZh": "提高预期回报和利率"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "债券供给曲线",
+        "page": 20,
+        "q": "Other things equal, what normally happens to the quantity of bonds supplied by issuers when bond prices fall?",
+        "options": [
+          "It increases",
+          "It decreases",
+          "It remains unchanged",
+          "It becomes negative"
+        ],
+        "answer": 1,
+        "explanation": "债券价格下降对应融资成本（利率）上升，发行人供给量减少。",
+        "answerZh": "减少"
+      },
+      {
+        "type": "计算应用",
+        "topic": "债券市场均衡",
+        "page": 22,
+        "q": "When there is excess demand in the bond market (B^d > B^s), how do prices and interest rates adjust to restore equilibrium?",
+        "options": [
+          "Prices fall and interest rates rise",
+          "Prices rise and interest rates fall",
+          "Both prices and interest rates rise",
+          "Both prices and interest rates fall"
+        ],
+        "answer": 1,
+        "explanation": "超额需求推高债券价格，而债券价格与利率反向变动，所以利率下降。",
+        "answerZh": "价格上升、利率下降"
+      },
+      {
+        "type": "计算应用",
+        "topic": "债券市场均衡",
+        "page": 22,
+        "q": "When there is excess supply in the bond market (B^d < B^s), what is the direction of the equilibrium adjustment?",
+        "options": [
+          "Prices rise and interest rates fall",
+          "Prices fall and interest rates rise",
+          "Prices remain unchanged and interest rates fall",
+          "Prices rise and interest rates remain unchanged"
+        ],
+        "answer": 1,
+        "explanation": "超额供给压低债券价格，并推高利率。",
+        "answerZh": "价格下降、利率上升"
+      },
+      {
+        "type": "情境分析",
+        "topic": "债券需求移动",
+        "page": 23,
+        "q": "Investors expect future interest rates to rise. For bonds with more than one year to maturity, how does the current bond demand curve normally shift?",
+        "options": [
+          "Rightward, because expected capital gains increase",
+          "Leftward, because expected returns decline",
+          "It does not shift because only current prices matter",
+          "Rightward first, then necessarily back to its original position"
+        ],
+        "answer": 1,
+        "explanation": "预期未来利率上升意味着未来债券价格可能下跌、当前持有预期回报下降，债券需求左移。",
+        "answerZh": "左移，因为预期回报下降"
+      },
+      {
+        "type": "情境分析",
+        "topic": "债券需求移动",
+        "page": 23,
+        "q": "How does higher expected inflation affect the demand curve for nominal bonds?",
+        "options": [
+          "Rightward, because real returns increase",
+          "Leftward, because expected real returns decline",
+          "It does not shift because nominal coupons are fixed",
+          "It affects only stocks, not bonds"
+        ],
+        "answer": 1,
+        "explanation": "给定当前价格与名义现金流，预期通胀上升降低债券预期实际回报，需求左移。",
+        "answerZh": "左移，因为预期实际回报下降"
+      },
+      {
+        "type": "情境分析",
+        "topic": "债券需求移动",
+        "page": 25,
+        "q": "If bonds become riskier relative to other assets and less liquid, how does the bond demand curve shift in each case?",
+        "options": [
+          "Rightward in both cases",
+          "Leftward in both cases",
+          "Leftward for higher risk and rightward for lower liquidity",
+          "Rightward for higher risk and leftward for lower liquidity"
+        ],
+        "answer": 1,
+        "explanation": "相对风险上升降低需求；相对流动性下降也降低需求，二者均使需求曲线左移。",
+        "answerZh": "左移、左移"
+      },
+      {
+        "type": "情境分析",
+        "topic": "债券供给移动",
+        "page": 27,
+        "q": "During an expansion, firms expect investment opportunities to be more profitable. What normally happens to the bond supply curve?",
+        "options": [
+          "It shifts right because firms are more willing to borrow",
+          "It shifts left because firms stop borrowing",
+          "It does not shift because only demand is affected",
+          "It shifts right because the government necessarily runs a surplus"
+        ],
+        "answer": 0,
+        "explanation": "投资机会预期盈利性提高，企业更愿意借款并发行债券，供给右移。",
+        "answerZh": "右移，因为企业更愿意融资"
+      },
+      {
+        "type": "计算应用",
+        "topic": "预期通胀与供给",
+        "page": 30,
+        "q": "Why does higher expected inflation shift the bond supply curve rightward?",
+        "options": [
+          "The real cost of borrowing falls at a given nominal interest rate",
+          "Nominal coupons automatically increase",
+          "Bond demand necessarily increases",
+          "Government credit ratings necessarily improve"
+        ],
+        "answer": 0,
+        "explanation": "给定名义利率（债券价格），更高预期通胀意味着更低实际利率和实际借款成本，发行供给增加。",
+        "answerZh": "给定名义利率下实际借款成本下降"
+      },
+      {
+        "type": "情境分析",
+        "topic": "财政赤字",
+        "page": 31,
+        "q": "What is the usual effect of a larger government budget deficit on the bond supply curve?",
+        "options": [
+          "It shifts left because the government repurchases bonds",
+          "It shifts right because the government issues more bonds to finance the deficit",
+          "It does not shift because deficits are unrelated to bonds",
+          "It shifts right because private wealth necessarily falls"
+        ],
+        "answer": 1,
+        "explanation": "政府通过出售更多债券为赤字融资，债券供给右移；盈余则使供给左移。",
+        "answerZh": "右移，因为政府发行更多债券融资"
+      },
+      {
+        "type": "情境分析",
+        "topic": "商业税与供给",
+        "page": 27,
+        "q": "Higher business taxes reduce profits from new investment projects. Other things equal, what is the most likely effect on bond supply and interest rates?",
+        "options": [
+          "Supply shifts right and interest rates rise",
+          "Supply shifts left and interest rates fall",
+          "Supply shifts left and interest rates rise",
+          "Supply and interest rates remain unchanged"
+        ],
+        "answer": 1,
+        "explanation": "盈利性下降使企业发行更少债券，供给左移；在需求不变时债券价格上升、利率下降。",
+        "answerZh": "供给左移，利率下降"
+      },
+      {
+        "type": "情境分析",
+        "topic": "经济衰退",
+        "page": 35,
+        "q": "Why do interest rates fall in the recession example presented in the slides?",
+        "options": [
+          "Demand shifts right while supply remains unchanged",
+          "Supply shifts left by more than demand, causing bond prices to rise",
+          "Supply shifts right by more than demand shifts right",
+          "Only the money supply increases"
+        ],
+        "answer": 1,
+        "explanation": "衰退使需求与供给均左移；课件设定供给下降更多，债券价格上升、利率下降。",
+        "answerZh": "供给左移幅度大于需求左移幅度，债券价格上升"
+      },
+      {
+        "type": "情境分析",
+        "topic": "经济扩张",
+        "page": 37,
+        "q": "In the expansion example in the slides, bond supply shifts right by more than bond demand. What is the result?",
+        "options": [
+          "Bond prices rise and interest rates fall",
+          "Bond prices fall and interest rates rise",
+          "Prices and interest rates remain unchanged",
+          "The quantity of bonds must fall to zero"
+        ],
+        "answer": 1,
+        "explanation": "扩张提高财富和投资盈利性，需求与供给均右移；供给移动更大使价格下降、利率上升。",
+        "answerZh": "债券价格下降、利率上升"
+      },
+      {
+        "type": "计算应用",
+        "topic": "费雪效应",
+        "page": 39,
+        "q": "When expected inflation rises, bond demand shifts left and bond supply shifts right. What happens to equilibrium prices and interest rates?",
+        "options": [
+          "Prices rise and interest rates fall",
+          "Prices fall and interest rates rise",
+          "Both prices and interest rates fall",
+          "Both prices and interest rates rise"
+        ],
+        "answer": 1,
+        "explanation": "两种移动都压低债券价格，从而推高均衡名义利率，这就是费雪效应的供需分析。",
+        "answerZh": "价格下降、利率上升"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "费雪效应",
+        "page": 41,
+        "q": "What does the Fisher effect say about the response of nominal interest rates to changes in expected inflation?",
+        "options": [
+          "They change in the opposite direction by the same amount",
+          "They change in the same direction, point for point",
+          "They change only after actual inflation changes",
+          "They always remain unchanged"
+        ],
+        "answer": 1,
+        "explanation": "名义利率随预期通胀同向、逐点变化，并可在实际通胀变化之前作出反应。",
+        "answerZh": "与预期通胀同向、逐点对应变化"
+      },
+      {
+        "type": "情境分析",
+        "topic": "反通胀政策",
+        "page": 43,
+        "q": "The government announces a credible anti-inflation program, and the public lowers expected inflation. What is the most likely effect on bond demand, bond supply, and interest rates?",
+        "options": [
+          "Demand shifts left, supply shifts right, and interest rates rise",
+          "Demand shifts right, supply shifts left, and interest rates fall",
+          "Both demand and supply shift right, and interest rates remain unchanged",
+          "Demand and supply remain unchanged, and interest rates fall"
+        ],
+        "answer": 1,
+        "explanation": "预期通胀下降提高债券相对实际回报并提高实际借款成本，需求右移、供给左移，价格上升、利率下降。",
+        "answerZh": "需求右移、供给左移、利率下降"
+      },
+      {
+        "type": "计算应用",
+        "topic": "费雪效应与数量",
+        "page": 39,
+        "q": "After higher expected inflation shifts bond demand left and bond supply right, what can be concluded about the equilibrium quantity of bonds?",
+        "options": [
+          "It must increase",
+          "It must decrease",
+          "It may either increase or decrease",
+          "It must fall to zero"
+        ],
+        "answer": 2,
+        "explanation": "价格下降和利率上升是确定的，但均衡数量的方向取决于两条曲线移动的相对幅度。",
+        "answerZh": "可能增加也可能减少"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "需求曲线斜率",
+        "page": 45,
+        "q": "In the demand equation Q^d = β₀ + β₁P + u, what sign does theory predict for β₁?",
+        "options": [
+          "Positive",
+          "Negative",
+          "Zero",
+          "Exactly one"
+        ],
+        "answer": 1,
+        "explanation": "债券价格越高，需求量越低，所以 β₁<0；在价格为纵轴的图中，斜率是 1/β₁。",
+        "answerZh": "负"
+      },
+      {
+        "type": "计算应用",
+        "topic": "需求曲线斜率",
+        "page": 45,
+        "q": "In the usual graph with price P on the vertical axis and quantity Q on the horizontal axis, what does a steeper demand curve imply?",
+        "options": [
+          "A larger |β₁|, meaning quantity demanded is more price-sensitive",
+          "A smaller |β₁|, meaning quantity demanded is less price-sensitive",
+          "A necessarily positive β₁",
+          "A supply elasticity of exactly zero"
+        ],
+        "answer": 1,
+        "explanation": "图中斜率为 1/β₁。更陡峭表示 |β₁| 更小，即价格变化引起的需求量调整较小。",
+        "answerZh": "|β₁|更小，需求量对价格较不敏感"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "识别问题",
+        "page": 46,
+        "q": "Why can't a simple regression of Q on P using market data identify the bond demand curve?",
+        "options": [
+          "Bonds do not have equilibrium prices",
+          "Each observation is jointly determined by supply and demand, mixing movements of both curves",
+          "Prices and quantities never change together",
+          "The demand curve must be vertical"
+        ],
+        "answer": 1,
+        "explanation": "观察到的 P、Q 是供需联立结果，简单回归可能无法区分需求与供给，甚至得到错误符号。",
+        "answerZh": "每个观测值都是供需共同决定的交点，混合了两种移动"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "工具变量",
+        "page": 47,
+        "q": "Which two conditions must a valid instrumental variable (IV) satisfy?",
+        "options": [
+          "Relevance and exclusion",
+          "Normality and homoskedasticity",
+          "Randomness and negative correlation",
+          "Stationarity and perfect collinearity"
+        ],
+        "answer": 0,
+        "explanation": "相关性要求工具变量确实影响价格；排他性要求它不通过需求曲线移动等渠道直接影响需求。",
+        "answerZh": "相关性与排他性"
+      },
+      {
+        "type": "计算应用",
+        "topic": "两阶段最小二乘",
+        "page": 47,
+        "q": "In the second stage of an IV estimation of bond demand, which variable is used to explain Q?",
+        "options": [
+          "The actual price P",
+          "The fitted price P̂ predicted by the instrument",
+          "The square of the instrument Z",
+          "The future quantity of bonds"
+        ],
+        "answer": 1,
+        "explanation": "第一阶段以 Z 预测 P，第二阶段用 P̂ 估计需求，以隔离供给侧引起的价格变化。",
+        "answerZh": "由工具变量预测得到的价格拟合值 P̂"
+      },
+      {
+        "type": "情境分析",
+        "topic": "IV 排他性",
+        "page": 48,
+        "q": "Why is expected inflation generally NOT a good instrument for estimating bond demand?",
+        "options": [
+          "It does not affect bond prices",
+          "It shifts both bond demand and supply, violating the exclusion restriction",
+          "It cannot be observed",
+          "It is completely unrelated to bond supply"
+        ],
+        "answer": 1,
+        "explanation": "预期通胀使需求左移、供给右移，因此不是只通过供给影响价格的干净外生变化。",
+        "answerZh": "它同时移动债券需求与供给，违反排他性"
+      },
+      {
+        "type": "情境分析",
+        "topic": "IV 排他性",
+        "page": 48,
+        "q": "Why might a budget deficit also fail to be a valid IV?",
+        "options": [
+          "It reveals only bond printing costs",
+          "It may reveal economic conditions, future taxes, inflation, or fiscal risk, thereby shifting demand",
+          "It reveals only the bond's face value",
+          "It contains no information relevant to investor demand"
+        ],
+        "answer": 1,
+        "explanation": "赤字虽影响供给，也可能通过宏观与财政风险信息直接影响投资者需求，破坏排他性。",
+        "answerZh": "经济状况、未来税收、通胀或财政风险，从而移动需求"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "税收日历 IV",
+        "page": 49,
+        "q": "Why can the tax calendar serve as a more credible supply-side IV for Treasury bills?",
+        "options": [
+          "It predicts seasonal changes in bill supply related to tax deadlines",
+          "It predicts daily random changes in investor risk preferences",
+          "It predicts corporate stock dividends",
+          "It predicts a constant long-term real interest rate"
+        ],
+        "answer": 0,
+        "explanation": "税收日历可预测财政部现金余额和短期国债供给变化，同时具有相对可信的排他性逻辑。",
+        "answerZh": "与税款期限相关的国债供给季节变化"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "流动性偏好",
+        "page": 52,
+        "q": "The liquidity preference framework determines the equilibrium interest rate using supply and demand in which two asset markets?",
+        "options": [
+          "Stocks and bonds",
+          "Money and bonds",
+          "Foreign exchange and commodities",
+          "Loans and deposits"
+        ],
+        "answer": 1,
+        "explanation": "凯恩斯的流动性偏好框架以货币和债券两类资产分析；货币市场均衡也意味着债券市场均衡。",
+        "answerZh": "货币与债券"
+      },
+      {
+        "type": "计算应用",
+        "topic": "市场均衡关系",
+        "page": 52,
+        "q": "In a framework with only money and bonds, if M^d = M^s, what can be inferred?",
+        "options": [
+          "B^d = B^s",
+          "B^d > B^s",
+          "Money demand is zero",
+          "Bond prices must equal face value"
+        ],
+        "answer": 0,
+        "explanation": "由 B^s+M^s=B^d+M^d，货币市场均衡时必有 B^s－B^d=0，债券市场也均衡。",
+        "answerZh": "B^d=B^s"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "持币机会成本",
+        "page": 53,
+        "q": "Assuming money earns zero return, why does a higher interest rate reduce the quantity of money demanded?",
+        "options": [
+          "The interest sacrificed by holding money increases",
+          "The face value of money becomes negative",
+          "Bond risk necessarily disappears",
+          "The price level necessarily falls by the same proportion"
+        ],
+        "answer": 0,
+        "explanation": "利率是持有货币的机会成本。利率上升使货币相对债券的预期回报下降，货币需求量减少。",
+        "answerZh": "持有货币放弃的利息增加"
+      },
+      {
+        "type": "计算应用",
+        "topic": "货币市场调整",
+        "page": 54,
+        "q": "When there is an excess supply of money, how does the interest rate normally adjust?",
+        "options": [
+          "It rises",
+          "It falls",
+          "It remains unchanged",
+          "It becomes infinite"
+        ],
+        "answer": 1,
+        "explanation": "超额货币供给使人们买入债券，债券价格上升、利率下降，直至货币市场恢复均衡。",
+        "answerZh": "下降"
+      },
+      {
+        "type": "情境分析",
+        "topic": "货币需求移动",
+        "page": 56,
+        "q": "How does a higher level of income affect money demand at every interest rate?",
+        "options": [
+          "It shifts money demand right because store-of-value and transaction needs increase",
+          "It shifts money demand left because transaction needs decline",
+          "It has no effect because income affects only bond supply",
+          "It makes money demand perfectly vertical without changing its position"
+        ],
+        "answer": 0,
+        "explanation": "收入提高增加价值储藏和交易性货币需求，使货币需求曲线右移，并在供给不变时推高利率。",
+        "answerZh": "右移，因为价值储藏与交易需求增加"
+      },
+      {
+        "type": "情境分析",
+        "topic": "价格水平效应",
+        "page": 56,
+        "q": "How does a rise in the price level affect nominal money demand?",
+        "options": [
+          "It shifts right because more nominal money is needed to maintain the same real balances",
+          "It shifts left because money's purchasing power increases",
+          "It remains unchanged because people care only about real balances",
+          "It first falls to zero and then recovers"
+        ],
+        "answer": 0,
+        "explanation": "人们关心实际货币余额，价格水平上升需要更多名义货币支持同样实际价值，需求右移。",
+        "answerZh": "需求右移，因为维持相同实际货币余额需要更多名义货币"
+      },
+      {
+        "type": "情境分析",
+        "topic": "货币供给",
+        "page": 57,
+        "q": "If the central bank increases the money supply and money demand is unchanged, what normally happens to the interest rate in the short-run analysis?",
+        "options": [
+          "It rises",
+          "It falls",
+          "It remains unchanged",
+          "It rises first and never declines"
+        ],
+        "answer": 1,
+        "explanation": "货币供给右移导致超额货币供给，均衡利率下降，这是流动性效应。",
+        "answerZh": "下降"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "四种效应",
+        "page": 61,
+        "q": "What is the direction of the liquidity effect of an increase in the money supply on interest rates?",
+        "options": [
+          "It raises interest rates",
+          "It lowers interest rates",
+          "It has no effect on interest rates",
+          "It sets interest rates equal to inflation"
+        ],
+        "answer": 1,
+        "explanation": "流动性效应是货币供给增加直接降低利率，通常立即发生。",
+        "answerZh": "降低利率"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "四种效应",
+        "page": 61,
+        "q": "Money growth raises income, which increases money demand and interest rates. What is this called?",
+        "options": [
+          "The liquidity effect",
+          "The income effect",
+          "The price-level effect",
+          "The expected-inflation effect"
+        ],
+        "answer": 1,
+        "explanation": "收入效应：货币扩张→收入提高→货币需求右移→利率上升。",
+        "answerZh": "收入效应"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "四种效应",
+        "page": 61,
+        "q": "Money growth raises the price level, increasing nominal money demand and interest rates. What is this called?",
+        "options": [
+          "The price-level effect",
+          "The liquidity effect",
+          "The wealth effect",
+          "The substitution effect"
+        ],
+        "answer": 0,
+        "explanation": "价格水平效应通过名义货币需求增加推高利率，与流动性效应方向相反。",
+        "answerZh": "价格水平效应"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "四种效应",
+        "page": 61,
+        "q": "Why does the expected-inflation effect normally raise nominal interest rates?",
+        "options": [
+          "It reduces bond demand and increases bond supply",
+          "It reduces money demand to zero",
+          "It automatically reduces the government deficit",
+          "It makes bond prices and interest rates move in the same direction"
+        ],
+        "answer": 0,
+        "explanation": "更高预期通胀使债券需求左移、供给右移，债券价格下降，名义利率上升。",
+        "answerZh": "它降低债券需求并增加债券供给"
+      },
+      {
+        "type": "情境分析",
+        "topic": "效应时序",
+        "page": 62,
+        "q": "Which statement about the timing of the effects of money growth is correct?",
+        "options": [
+          "The liquidity effect normally occurs immediately",
+          "Income and price-level effects always occur before the liquidity effect",
+          "The expected-inflation effect always operates at a fixed speed",
+          "All four effects are necessarily completed on the same day"
+        ],
+        "answer": 0,
+        "explanation": "流动性效应通常立即；收入、价格水平效应较慢；预期通胀效应快慢取决于预期调整速度。",
+        "answerZh": "流动性效应通常立即发生"
+      },
+      {
+        "type": "情境分析",
+        "topic": "货币增长历史证据",
+        "page": 67,
+        "q": "When money growth rose in the mid-1960s, interest rates also rose. What does this suggest?",
+        "options": [
+          "The liquidity effect must always dominate",
+          "The liquidity effect may have been outweighed by income, price-level, and expected-inflation effects",
+          "Money growth and interest rates can move only in opposite directions",
+          "The Fisher effect is permanently disproved"
+        ],
+        "answer": 1,
+        "explanation": "历史共同上升表明其他推高利率的效应可能超过流动性效应，但不能仅凭图完全区分具体路径。",
+        "answerZh": "流动性效应可能被收入、价格水平和预期通胀效应压倒"
+      },
+      {
+        "type": "情境分析",
+        "topic": "货币增长路径",
+        "page": 65,
+        "q": "If expectations adjust quickly and the effects that push interest rates upward are strong, which interest-rate path is possible after money growth rises?",
+        "options": [
+          "Rates initially fall because of the liquidity effect, then rise and may exceed their original level",
+          "Rates fall permanently and never change again",
+          "Rates immediately fall to zero",
+          "Rates rise initially and then remain unchanged forever"
+        ],
+        "answer": 0,
+        "explanation": "短期流动性效应可先压低利率，随后收入、价格水平和预期通胀效应可使其回升甚至超过初始水平。",
+        "answerZh": "先因流动性效应下降，随后上升并可能超过原水平"
+      }
+    ]
+  },
+  {
+    "id": "ch04",
+    "chapter": "Chapter 4",
+    "title": "利率的风险与期限结构",
+    "englishTitle": "The Risk and Term Structure of Interest Rates",
+    "description": "重点训练风险溢价、矩阵定价与无套利、Bootstrap 即期曲线，以及三种期限结构理论的假设和解释力。",
+    "color": "#e07a3f",
+    "questions": [
+      {
+        "type": "概念辨析",
+        "topic": "风险结构",
+        "page": 5,
+        "q": "What relationship does the risk structure of interest rates examine?",
+        "options": [
+          "Rates on bonds with the same maturity but different risk, liquidity, or tax characteristics",
+          "Rates on bonds with the same risk but different maturities",
+          "Rates on zero-coupon bonds only",
+          "Rates on the same bond issued by the same entity only"
+        ],
+        "answer": 0,
+        "explanation": "风险结构比较相同期限、不同特征的债券；不同期限之间的关系属于期限结构。",
+        "answerZh": "期限相同但风险、流动性或税收特征不同"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "违约风险",
+        "page": 6,
+        "q": "What is default risk?",
+        "options": [
+          "The risk that price fluctuations result from changes in market interest rates",
+          "The risk that the issuer cannot or will not pay interest or principal",
+          "The risk that an asset cannot be consumed immediately",
+          "The risk that the central bank changes the money supply"
+        ],
+        "answer": 1,
+        "explanation": "违约风险来自发行人未按约定支付票息或到期本金的可能性。",
+        "answerZh": "发行人不能或不愿支付利息或本金"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "风险溢价",
+        "page": 6,
+        "q": "When maturity, liquidity, and tax treatment are held fixed, what is the spread between the rate on a bond with default risk and the rate on a same-maturity Treasury bond called?",
+        "options": [
+          "The risk premium",
+          "The coupon rate",
+          "The current yield",
+          "The real interest rate"
+        ],
+        "answer": 0,
+        "explanation": "该利差是对投资者承担额外违约风险的补偿，即 risk premium。",
+        "answerZh": "风险溢价"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "债券评级",
+        "page": 7,
+        "q": "According to the slides, which ratings fall within the investment-grade category?",
+        "options": [
+          "Baa/BBB or above",
+          "Below Baa/BBB",
+          "D only",
+          "Ratings are irrelevant; only issuance size matters"
+        ],
+        "answer": 0,
+        "explanation": "Baa/BBB 及以上属于投资级；低于该水平为投机级、垃圾债或高收益债。",
+        "answerZh": "Baa/BBB 或以上"
+      },
+      {
+        "type": "情境分析",
+        "topic": "高收益债",
+        "page": 7,
+        "q": "Why are speculative-grade bonds also called high-yield bonds?",
+        "options": [
+          "The government guarantees the highest return",
+          "Investors require a higher yield to compensate for greater default risk",
+          "Their coupons are always tax-exempt",
+          "Their prices never change with market conditions"
+        ],
+        "answer": 1,
+        "explanation": "较高违约风险要求更高收益率补偿，因此投机级债券也称 high-yield bonds。",
+        "answerZh": "投资者要求更高收益率以补偿较高违约风险"
+      },
+      {
+        "type": "情境分析",
+        "topic": "违约风险冲击",
+        "page": 11,
+        "q": "Corporate default risk rises and investors move funds into Treasury bonds. What normally happens to corporate and Treasury bond prices, respectively?",
+        "options": [
+          "Corporate prices rise and Treasury prices fall",
+          "Corporate prices fall and Treasury prices rise",
+          "Both rise",
+          "Neither changes"
+        ],
+        "answer": 1,
+        "explanation": "公司债需求左移使其价格下降；国债需求右移使其价格上升。",
+        "answerZh": "公司债下降、国债上升"
+      },
+      {
+        "type": "计算应用",
+        "topic": "风险溢价变化",
+        "page": 11,
+        "q": "After corporate default risk rises, the corporate bond rate increases from 5% to 7%, while the same-maturity Treasury rate falls from 4% to 3%. How does the risk premium change?",
+        "options": [
+          "It widens from 1% to 4%",
+          "It narrows from 1% to 0%",
+          "It widens from 2% to 5%",
+          "It remains unchanged at 1%"
+        ],
+        "answer": 0,
+        "explanation": "初始利差为 5%－4%=1%，冲击后为 7%－3%=4%，风险溢价扩大。",
+        "answerZh": "由 1% 扩大至 4%"
+      },
+      {
+        "type": "情境分析",
+        "topic": "流动性与收益率",
+        "page": 16,
+        "q": "Other things equal, what normally happens to a bond's yield when its liquidity declines?",
+        "options": [
+          "It rises because investors require compensation for higher conversion costs",
+          "It falls because investors are more willing to hold the bond",
+          "It remains unchanged because liquidity does not affect price",
+          "It falls to zero"
+        ],
+        "answer": 0,
+        "explanation": "流动性下降降低债券吸引力与价格，投资者要求更高收益率作为补偿。",
+        "answerZh": "上升，因为投资者要求补偿较高变现成本"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "税收与收益率",
+        "page": 13,
+        "q": "Municipal bonds are not default-free and are less liquid, yet their yields are often lower than Treasury yields. What is the key explanation?",
+        "options": [
+          "Municipal bonds never mature",
+          "Their interest is generally exempt from federal income tax",
+          "Their face values are necessarily higher",
+          "Their issuers cannot default"
+        ],
+        "answer": 1,
+        "explanation": "免税提高税后预期回报，使投资者愿意接受较低的税前名义收益率。",
+        "answerZh": "其利息通常免缴联邦所得税"
+      },
+      {
+        "type": "情境分析",
+        "topic": "免税待遇",
+        "page": 15,
+        "q": "After municipal bonds receive tax-exempt status, how do their demand, price, and interest rate normally change relative to Treasury bonds?",
+        "options": [
+          "Demand shifts left, price falls, and the interest rate rises",
+          "Demand shifts right, price rises, and the interest rate falls",
+          "Demand shifts right, price falls, and the interest rate rises",
+          "Demand, price, and the interest rate remain unchanged"
+        ],
+        "answer": 1,
+        "explanation": "免税提高相对税后回报，市政债需求右移，价格上升、利率下降；国债则可能出现相反调整。",
+        "answerZh": "需求右移、价格上升、利率下降"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "一价定律",
+        "page": 18,
+        "q": "What does price consistency, or the law of one price, require?",
+        "options": [
+          "Assets with identical cash flows must have the same price",
+          "All bonds must be priced at face value",
+          "Long-term bonds must always be more expensive",
+          "Yields must remain constant every day"
+        ],
+        "answer": 0,
+        "explanation": "相同日期、相同偿付的资产或组合应有相同价格，否则可通过重组和交易获得套利。",
+        "answerZh": "相同现金流的资产具有相同价格"
+      },
+      {
+        "type": "计算应用",
+        "topic": "复制定价",
+        "page": 19,
+        "q": "A one-year zero-coupon bond pays $1,000 and currently costs $950. Another bond's only payment is $1,100 in one year. What must its no-arbitrage price be?",
+        "options": [
+          "$950",
+          "$1,000",
+          "$1,045",
+          "$1,100"
+        ],
+        "answer": 2,
+        "explanation": "该债券相当于 1.1 份零息债券，价格 = 1.1×950 = $1,045。",
+        "answerZh": "$1,045"
+      },
+      {
+        "type": "情境分析",
+        "topic": "复制套利",
+        "page": 20,
+        "q": "If the bond paying $1,100 in one year is priced at $1,050 instead, how can an arbitrage be constructed?",
+        "options": [
+          "Buy the bond and short 1.1 zero-coupon bonds",
+          "Short the bond and buy 1.1 zero-coupon bonds, receiving $5 immediately",
+          "Only buy the bond and hold it to maturity",
+          "Buy both bonds without using any short positions"
+        ],
+        "answer": 1,
+        "explanation": "卖空高估债券收 $1,050，买入复制组合花 $1,045，立即净收 $5，未来净现金流为零。",
+        "answerZh": "卖空该债券并买入 1.1 份零息债券，立即净收 $5"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "贴现因子",
+        "page": 20,
+        "q": "Which statement correctly defines the discount factor D_t?",
+        "options": [
+          "The price today of a claim that pays $1 at date t",
+          "The annualized inflation rate at date t",
+          "A bond's face value divided by its coupon",
+          "The stock return in period t"
+        ],
+        "answer": 0,
+        "explanation": "D_t 是整个持有期限的贴现因子，不是年化利率；零息债满足 D_t=(1+y_t)^(-t)。",
+        "answerZh": "在日期 t 支付 $1 的索取权今天的价格"
+      },
+      {
+        "type": "计算应用",
+        "topic": "贴现因子转即期利率",
+        "page": 20,
+        "q": "If the two-year discount factor is D₂ = 0.90, what is the two-year spot rate with annual compounding closest to?",
+        "options": [
+          "4.56%",
+          "5.00%",
+          "5.41%",
+          "10.00%"
+        ],
+        "answer": 2,
+        "explanation": "y₂=D₂^(-1/2)－1=(0.90)^(-1/2)－1≈5.41%。",
+        "answerZh": "5.41%"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "矩阵秩",
+        "page": 22,
+        "q": "Which condition is equivalent to a square matrix being invertible?",
+        "options": [
+          "Its rank is less than its number of rows",
+          "Its rank equals its order and its determinant is nonzero",
+          "All of its elements are positive",
+          "All of its rows are identical"
+        ],
+        "answer": 1,
+        "explanation": "n×n 方阵满秩（rank=n）等价于行列式非零，也等价于可逆。",
+        "answerZh": "秩等于其阶数且行列式非零"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "债券定价矩阵",
+        "page": 23,
+        "q": "In B = C′D, if C is a T × N cash-flow matrix, what are the dimensions of B and D, respectively?",
+        "options": [
+          "B is T × 1 and D is N × 1",
+          "B is N × 1 and D is T × 1",
+          "Both are T × N",
+          "B is 1 × N and D is 1 × T"
+        ],
+        "answer": 1,
+        "explanation": "C′ 为 N×T，乘 T×1 的 D 得到 N×1 的价格向量 B。",
+        "answerZh": "B 为 N×1，D 为 T×1"
+      },
+      {
+        "type": "计算应用",
+        "topic": "组合偿付",
+        "page": 25,
+        "q": "For portfolio holdings Z, cash-flow matrix C, and price vector B, what are the future payoff X and current cost P?",
+        "options": [
+          "X = CZ and P = B′Z",
+          "X = C′Z and P = BZ",
+          "X = BZ and P = C′Z",
+          "X = D and P = C"
+        ],
+        "answer": 0,
+        "explanation": "现金流按持仓线性组合：X=CZ；成本为各资产价格乘持仓之和：P=B′Z。",
+        "answerZh": "X=CZ，P=B′Z"
+      },
+      {
+        "type": "计算应用",
+        "topic": "复制组合",
+        "page": 25,
+        "q": "Three bonds have payoffs of (0,100), (10,110), and (20,120). Which two portfolios have exactly the same payoff?",
+        "options": [
+          "One unit of Bond 1 and one unit of Bond 2",
+          "Two units of Bond 2, and one unit each of Bonds 1 and 3",
+          "One unit of Bond 2 and one unit of Bond 3",
+          "Two units of Bond 1 and one unit of Bond 3"
+        ],
+        "answer": 1,
+        "explanation": "2×(10,110)=(20,220)，同时 (0,100)+(20,120)=(20,220)，二者完全复制。",
+        "answerZh": "2 份债券 2 与 1 份债券 1 加 1 份债券 3"
+      },
+      {
+        "type": "计算应用",
+        "topic": "贴现因子求解",
+        "page": 33,
+        "q": "Given 100D₂ = 80 and 10D₁ + 110D₂ = 97, what are D₁ and D₂, respectively?",
+        "options": [
+          "D₁ = 0.8 and D₂ = 0.9",
+          "D₁ = 0.9 and D₂ = 0.8",
+          "D₁ = 0.97 and D₂ = 0.80",
+          "D₁ = −0.1 and D₂ = 0.8"
+        ],
+        "answer": 1,
+        "explanation": "D₂=80/100=0.8；D₁=(97－110×0.8)/10=0.9。",
+        "answerZh": "D₁=0.9，D₂=0.8"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "价格一致性",
+        "page": 26,
+        "q": "Under the trading assumptions in the slides, what is the necessary and sufficient condition for price consistency?",
+        "options": [
+          "At least one solution D to B = C′D exists",
+          "Every component of D must be negative",
+          "C must be a square matrix",
+          "All bonds must have the same coupon"
+        ],
+        "answer": 0,
+        "explanation": "价格一致性只要求存在贴现因子解；无套利进一步要求存在严格为正的解。",
+        "answerZh": "B=C′D 至少存在一个解 D"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "无套利",
+        "page": 26,
+        "q": "What is the necessary and sufficient condition for no arbitrage?",
+        "options": [
+          "Any real-valued solution is sufficient",
+          "A strictly positive D satisfying B = C′D exists",
+          "The solution for D must be unique",
+          "The rank of C must be less than the number of dates"
+        ],
+        "answer": 1,
+        "explanation": "无套利要求存在每个分量都严格大于零的日期价格向量，不要求解唯一。",
+        "answerZh": "存在严格正的 D 使 B=C′D"
+      },
+      {
+        "type": "情境分析",
+        "topic": "价格不一致",
+        "page": 27,
+        "q": "Bond 3 has a market price of $115, while its replicating portfolio costs only $114 and provides identical future payoffs. Which description best fits this market?",
+        "options": [
+          "Prices are consistent and there is no arbitrage",
+          "Prices are inconsistent and an arbitrage exists",
+          "Prices are consistent and the market is risk-free",
+          "The prices provide insufficient information"
+        ],
+        "answer": 1,
+        "explanation": "相同偿付却有不同价格，B=C′D 无解；卖空高估资产、买入复制组合可立即获得 $1。",
+        "answerZh": "价格不一致且存在套利"
+      },
+      {
+        "type": "情境分析",
+        "topic": "多解与无套利",
+        "page": 29,
+        "q": "Suppose B = C′D has infinitely many real solutions, and at least one solution has strictly positive components. What follows?",
+        "options": [
+          "Prices are inconsistent, but there is no arbitrage",
+          "Prices are consistent and there is no arbitrage",
+          "Prices are consistent, but arbitrage must exist",
+          "A unique solution is required for no arbitrage"
+        ],
+        "answer": 1,
+        "explanation": "解的存在保证价格一致性；正解的存在保证无套利，解是否唯一是另一个问题。",
+        "answerZh": "价格一致且无套利"
+      },
+      {
+        "type": "情境分析",
+        "topic": "多解与套利",
+        "page": 31,
+        "q": "Suppose B = C′D has infinitely many solutions, but every solution has at least one nonpositive component. What follows?",
+        "options": [
+          "Prices are consistent, but no-arbitrage fails",
+          "Prices are inconsistent, and no-arbitrage holds",
+          "Both price consistency and no-arbitrage hold",
+          "Many solutions necessarily imply no arbitrage"
+        ],
+        "answer": 0,
+        "explanation": "实数解存在使价格一致，但不存在严格正解意味着市场仍存在套利。",
+        "answerZh": "价格一致，但无套利不成立"
+      },
+      {
+        "type": "计算应用",
+        "topic": "负贴现因子",
+        "page": 35,
+        "q": "A market has the unique solution D = (−0.1, 0.8)′. Which statement is correct?",
+        "options": [
+          "Prices are inconsistent and there is no arbitrage",
+          "Prices are consistent, but an arbitrage exists",
+          "Prices are consistent and there is no arbitrage",
+          "Price consistency depends on whether D is unique"
+        ],
+        "answer": 1,
+        "explanation": "唯一实数解存在，故价格一致；但 D₁<0，不存在严格正解，故存在套利。",
+        "answerZh": "价格一致但存在套利"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "解的唯一性",
+        "page": 37,
+        "q": "Given that prices are already consistent, what condition on C makes the discount-factor solution unique?",
+        "options": [
+          "rank(C) = T",
+          "rank(C) = 0",
+          "Every element of C is positive",
+          "The number of bonds N must equal one"
+        ],
+        "answer": 0,
+        "explanation": "T 是未来支付日期数；rank(C)=T 时，在一致系统中解唯一。唯一性并非无套利的必要条件。",
+        "answerZh": "rank(C)=T"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "期限结构",
+        "page": 39,
+        "q": "What does the term structure of interest rates examine?",
+        "options": [
+          "The relationship among rates on bonds with similar risk, liquidity, and tax characteristics but different maturities",
+          "The spread between same-maturity bonds with different ratings",
+          "The relationship between stock prices and dividends",
+          "The relationship between money supply and income"
+        ],
+        "answer": 0,
+        "explanation": "期限结构控制其他债券特征，重点分析到期期限与利率之间的关系。",
+        "answerZh": "风险、流动性和税收相似但期限不同的债券利率关系"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "收益率曲线",
+        "page": 40,
+        "q": "What is a yield curve called when long-term interest rates are below short-term rates?",
+        "options": [
+          "Upward-sloping",
+          "Flat",
+          "Inverted",
+          "Vertical"
+        ],
+        "answer": 2,
+        "explanation": "长期低于短期为 inverted yield curve；长期高于短期为向上倾斜。",
+        "answerZh": "倒置"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "即期曲线与 YTM",
+        "page": 45,
+        "q": "Which statement about spot yields and a coupon bond's YTM is correct?",
+        "options": [
+          "They are identical in every case",
+          "A spot yield applies to a single dated payment, while YTM is a single rate summarizing several dated payments",
+          "YTM is used only for zero-coupon bonds",
+          "A spot curve must be constructed using stock cash flows"
+        ],
+        "answer": 1,
+        "explanation": "息票债券 YTM 一般不等于其到期日的即期收益率，因为前者概括了多期现金流。",
+        "answerZh": "即期收益率对应单一日期付款，YTM 是多个日期付款的单一概括利率"
+      },
+      {
+        "type": "计算应用",
+        "topic": "Bootstrap",
+        "page": 42,
+        "q": "A one-year zero-coupon bond has a face value of $1,000 and a price of $950. What is D₁?",
+        "options": [
+          "0.90",
+          "0.95",
+          "1.00",
+          "1.05"
+        ],
+        "answer": 1,
+        "explanation": "950=1,000D₁，所以 D₁=0.95。",
+        "answerZh": "0.95"
+      },
+      {
+        "type": "计算应用",
+        "topic": "Bootstrap",
+        "page": 42,
+        "q": "Given D₁ = 0.95, a two-year bond pays $100 in year 1 and $1,100 in year 2, and costs $1,085. What is D₂?",
+        "options": [
+          "0.85",
+          "0.90",
+          "0.95",
+          "0.99"
+        ],
+        "answer": 1,
+        "explanation": "D₂=[1,085－100×0.95]/1,100=990/1,100=0.90。",
+        "answerZh": "0.90"
+      },
+      {
+        "type": "计算应用",
+        "topic": "Bootstrap",
+        "page": 43,
+        "q": "Given D₁ = 0.95 and D₂ = 0.90, a three-year bond pays $200, $200, and $1,200, and costs $1,390. What is D₃?",
+        "options": [
+          "0.80",
+          "0.85",
+          "0.90",
+          "1.02"
+        ],
+        "answer": 1,
+        "explanation": "D₃=[1,390－200×(0.95+0.90)]/1,200=1,020/1,200=0.85。",
+        "answerZh": "0.85"
+      },
+      {
+        "type": "计算应用",
+        "topic": "Bootstrap",
+        "page": 43,
+        "q": "Given D₁ = 0.95, D₂ = 0.90, and D₃ = 0.85, a four-year bond pays $50, $50, $50, and $1,050, and costs $975. What is D₄?",
+        "options": [
+          "0.75",
+          "0.80",
+          "0.84",
+          "0.85"
+        ],
+        "answer": 1,
+        "explanation": "D₄=[975－50×(0.95+0.90+0.85)]/1,050=840/1,050=0.80。",
+        "answerZh": "0.80"
+      },
+      {
+        "type": "计算应用",
+        "topic": "即期收益率",
+        "page": 44,
+        "q": "What one-year spot yield is implied by D₁ = 0.95?",
+        "options": [
+          "4.50%",
+          "5.00%",
+          "5.26%",
+          "5.50%"
+        ],
+        "answer": 2,
+        "explanation": "y₁=1/0.95－1≈5.26%。",
+        "answerZh": "5.26%"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "期限结构事实",
+        "page": 51,
+        "q": "Which of the following is NOT one of the three empirical facts about the term structure listed in the slides?",
+        "options": [
+          "Rates on bonds of different maturities move together over time",
+          "The curve is more likely to slope upward when short rates are low and to invert when short rates are high",
+          "Yield curves usually slope upward",
+          "Yield curves are always perfectly flat"
+        ],
+        "answer": 3,
+        "explanation": "三大事实是共同变动、曲线斜率与短期利率水平相关、通常向上倾斜，而非始终平坦。",
+        "answerZh": "收益率曲线始终完全平坦"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "预期理论假设",
+        "page": 56,
+        "q": "What is the key assumption of the expectations theory regarding bonds of different maturities?",
+        "options": [
+          "They are perfect substitutes and the term premium is zero",
+          "They are not substitutes at all",
+          "They are substitutes only in default",
+          "They must all have the same coupon"
+        ],
+        "answer": 0,
+        "explanation": "完全替代使同一持有期的预期回报相等，长期利率由当前与预期未来短期利率决定。",
+        "answerZh": "完全替代品且期限溢价为零"
+      },
+      {
+        "type": "计算应用",
+        "topic": "两期预期理论",
+        "page": 58,
+        "q": "Under the expectations theory, which equation gives the exact two-period relationship?",
+        "options": [
+          "(1+i₂t)² = (1+it)(1+i^e_(t+1))",
+          "i₂t = it + i^e_(t+1)",
+          "(1+i₂t) = (1+it)²",
+          "i₂t = it − i^e_(t+1)"
+        ],
+        "answer": 0,
+        "explanation": "直接持有两年零息债与连续滚动两个一年期投资的预期终值相等；算术平均只是一阶近似。",
+        "answerZh": "(1+i₂t)²=(1+it)(1+i^e_(t+1))"
+      },
+      {
+        "type": "计算应用",
+        "topic": "预期短期利率",
+        "page": 60,
+        "q": "Under the expectations theory's first-order approximation, the current one-year rate is 2% and the two-year rate is 3%. What is the expected one-year rate next year?",
+        "options": [
+          "2%",
+          "3%",
+          "4%",
+          "5%"
+        ],
+        "answer": 2,
+        "explanation": "3%≈(2%+i^e)/2，因此 i^e≈2×3%－2%=4%。",
+        "answerZh": "4%"
+      },
+      {
+        "type": "计算应用",
+        "topic": "预期短期利率",
+        "page": 60,
+        "q": "Under the same assumptions, if the three-year rate is 4%, what is the expected one-year rate two years from now?",
+        "options": [
+          "4%",
+          "5%",
+          "6%",
+          "8%"
+        ],
+        "answer": 2,
+        "explanation": "4%≈(2%+4%+i^e_(t+2))/3，所以 i^e_(t+2)≈12%－2%－4%=6%。",
+        "answerZh": "6%"
+      },
+      {
+        "type": "情境分析",
+        "topic": "曲线形状与预期",
+        "page": 61,
+        "q": "Under the pure expectations theory, what does an upward-sloping yield curve normally indicate about expected future short-term rates?",
+        "options": [
+          "They are expected to rise",
+          "They are expected to fall",
+          "They are expected to remain unchanged",
+          "They are expected to fall to zero"
+        ],
+        "answer": 0,
+        "explanation": "预期未来短期利率高于当前水平，会抬高其平均值并形成向上倾斜曲线。",
+        "answerZh": "上升"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "预期理论解释力",
+        "page": 54,
+        "q": "Which empirical facts can the expectations theory explain relatively well?",
+        "options": [
+          "Co-movement and the relationship between slope and short-rate levels, but not the usual upward slope",
+          "Only the usual upward slope",
+          "None of the three facts",
+          "Only the default-risk premium"
+        ],
+        "answer": 0,
+        "explanation": "预期理论解释事实 1 和 2，但难以说明为何市场大多数时候预期短期利率上升。",
+        "answerZh": "共同变动和斜率与短期利率水平相关，但不能解释通常向上"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "分割市场理论",
+        "page": 66,
+        "q": "What does the segmented markets theory assume about bonds of different maturities?",
+        "options": [
+          "They are perfect substitutes",
+          "They are not substitutes at all, and each maturity market is segmented",
+          "They are partial substitutes with a positive term premium",
+          "They are substitutes only at maturity"
+        ],
+        "answer": 1,
+        "explanation": "每个期限的利率由该期限债券自身供需决定，其他期限预期回报不影响该市场需求。",
+        "answerZh": "完全不可替代，各期限市场相互分割"
+      },
+      {
+        "type": "情境分析",
+        "topic": "分割市场与曲线",
+        "page": 68,
+        "q": "How does the segmented markets theory explain why yield curves usually slope upward?",
+        "options": [
+          "Investors generally prefer shorter maturities, so long-term bonds have lower demand, lower prices, and higher rates",
+          "The central bank guarantees higher long-term rates",
+          "Long-term bonds are never risky",
+          "All investors buy only long-term bonds"
+        ],
+        "answer": 0,
+        "explanation": "风险厌恶且持有期偏短的投资者偏好短期债，长期债需要更高收益率吸引需求。",
+        "answerZh": "投资者通常偏好较短期限，长期债需求较低、价格较低、利率较高"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "分割市场局限",
+        "page": 69,
+        "q": "Why does the segmented markets theory have difficulty explaining co-movement among rates of different maturities?",
+        "options": [
+          "It assumes that maturity markets are completely segmented",
+          "It assumes that all bonds are perfect substitutes",
+          "It uses a positive term premium",
+          "It does not allow bonds to be traded"
+        ],
+        "answer": 0,
+        "explanation": "完全分割意味着一个期限的利率变化不影响其他期限，因此也无法自然解释事实 1 和事实 2。",
+        "answerZh": "它假设各期限市场完全分割"
+      },
+      {
+        "type": "计算应用",
+        "topic": "流动性溢价",
+        "page": 73,
+        "q": "The expected one-year rates over the next two years are 5% and 6%, and the two-year term premium is 0.25%. Using the approximation in the slides, what is the two-year rate?",
+        "options": [
+          "5.25%",
+          "5.50%",
+          "5.75%",
+          "6.25%"
+        ],
+        "answer": 2,
+        "explanation": "i₂≈(5%+6%)/2+0.25%=5.75%。",
+        "answerZh": "5.75%"
+      },
+      {
+        "type": "计算应用",
+        "topic": "流动性溢价",
+        "page": 73,
+        "q": "The expected one-year rates over the next five years are 5%, 6%, 7%, 8%, and 9%, and the five-year term premium is 1%. What is the five-year rate?",
+        "options": [
+          "7%",
+          "7.5%",
+          "8%",
+          "9%"
+        ],
+        "answer": 2,
+        "explanation": "平均预期短期利率为 7%，加 1% 期限溢价，得到 i₅≈8%。",
+        "answerZh": "8%"
+      },
+      {
+        "type": "概念辨析",
+        "topic": "流动性溢价理论",
+        "page": 71,
+        "q": "What is the key difference between the liquidity premium theory and the expectations theory?",
+        "options": [
+          "Bonds of different maturities are only partial substitutes, and long-term rates also include a term premium",
+          "It completely rejects any role for expected future short rates",
+          "It assumes that all term premiums are negative",
+          "It examines only same-maturity default risk"
+        ],
+        "answer": 0,
+        "explanation": "长期利率约等于预期短期利率平均值加期限溢价，且课件设定该溢价随期限增加。",
+        "answerZh": "不同期限债券仅部分替代，长期利率还包含期限溢价"
+      },
+      {
+        "type": "情境分析",
+        "topic": "曲线形状判断",
+        "page": 79,
+        "q": "In a model with a positive term premium, what does a flat yield curve normally imply about expected future short-term rates?",
+        "options": [
+          "They are expected to fall moderately",
+          "They are expected to rise sharply",
+          "They are expected to remain strictly unchanged",
+          "They are expected to rise by an extremely large amount"
+        ],
+        "answer": 0,
+        "explanation": "正期限溢价本身会使曲线向上；若实际曲线平坦，预期短期利率适度下降可抵消该溢价。",
+        "answerZh": "适度下降"
+      },
+      {
+        "type": "情境分析",
+        "topic": "衰退信号",
+        "page": 81,
+        "q": "Which statement about inverted yield curves and recessions is most accurate?",
+        "options": [
+          "An inversion guarantees that a recession will occur",
+          "An inversion can be a recession warning, but the term premium must also be considered and it is not a guarantee",
+          "An inversion reflects only default risk and is unrelated to future rates",
+          "The curve's shape never contains policy-rate expectations"
+        ],
+        "answer": 1,
+        "explanation": "预期未来降息可压低长期利率并使曲线倒置，但它是可能信号而非确定性预测，且期限溢价也影响形态。",
+        "answerZh": "倒置可能是衰退警告，但还要考虑期限溢价，不能视为保证"
+      }
+    ]
+  }
+];
+
+</script>
+  <script>
+(() => {
+  "use strict";
+
+  const chapters = window.QUIZ_DATA;
+  const STORAGE_KEY = "interest-rate-studio-v1";
+  const letters = ["A", "B", "C", "D"];
+  const typeColors = { "概念辨析": "#6d5dfc", "计算应用": "#e5aa45", "情境分析": "#38a78b" };
+
+  chapters.forEach(chapter => {
+    chapter.questions.forEach((q, index) => {
+      q.id = `${chapter.id}-q${String(index + 1).padStart(2, "0")}`;
+      q.number = index + 1;
+    });
+  });
+
+  const $ = id => document.getElementById(id);
+  const els = {
+    sidebar: $("sidebar"), backdrop: $("sidebarBackdrop"), homeNav: $("homeNav"), chapterNav: $("chapterNav"),
+    breadcrumb: $("breadcrumb"), homeView: $("homeView"), quizView: $("quizView"),
+    overallStats: $("overallStats"), chapterCards: $("chapterCards"), continueButton: $("continueButton"),
+    quizEyebrow: $("quizEyebrow"), quizTitle: $("quizTitle"), quizDescription: $("quizDescription"),
+    progressStats: $("chapterProgressStats"), progressFill: $("chapterProgressFill"),
+    questionPosition: $("questionPosition"), questionMeta: $("questionMeta"), questionText: $("questionText"),
+    optionsList: $("optionsList"), feedback: $("feedback"), bookmarkButton: $("bookmarkButton"),
+    sourceLabel: $("sourceLabel"), questionCard: $("questionCard"), emptyState: $("emptyState"),
+    prevButton: $("prevButton"), nextButton: $("nextButton"), questionMap: $("questionMap"),
+    mapCount: $("mapCount"), typeBreakdown: $("typeBreakdown"), scoreDialog: $("scoreDialog"),
+    scoreContent: $("scoreContent"), toast: $("toast")
+  };
+
+  function freshState() {
+    const orders = {}, currentIds = {}, filters = {};
+    chapters.forEach(chapter => {
+      orders[chapter.id] = chapter.questions.map(q => q.id);
+      currentIds[chapter.id] = chapter.questions[0].id;
+      filters[chapter.id] = "all";
+    });
+    return {
+      view: "home", currentChapter: "ch02", lastChapter: "ch02",
+      answers: {}, bookmarks: [], orders, currentIds, filters
+    };
+  }
+
+  function loadState() {
+    const base = freshState();
+    try {
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+      if (!saved || typeof saved !== "object") return base;
+      const merged = { ...base, ...saved };
+      merged.answers = saved.answers && typeof saved.answers === "object" ? saved.answers : {};
+      merged.bookmarks = Array.isArray(saved.bookmarks) ? saved.bookmarks : [];
+      merged.orders = { ...base.orders, ...(saved.orders || {}) };
+      merged.currentIds = { ...base.currentIds, ...(saved.currentIds || {}) };
+      merged.filters = { ...base.filters, ...(saved.filters || {}) };
+      if (!chapters.some(c => c.id === merged.currentChapter)) merged.currentChapter = "ch02";
+      chapters.forEach(chapter => {
+        const validIds = new Set(chapter.questions.map(q => q.id));
+        const savedOrder = Array.isArray(merged.orders[chapter.id]) ? merged.orders[chapter.id] : [];
+        const cleanOrder = savedOrder.filter((id, i) => validIds.has(id) && savedOrder.indexOf(id) === i);
+        chapter.questions.forEach(q => { if (!cleanOrder.includes(q.id)) cleanOrder.push(q.id); });
+        merged.orders[chapter.id] = cleanOrder;
+        if (!validIds.has(merged.currentIds[chapter.id])) merged.currentIds[chapter.id] = cleanOrder[0];
+      });
+      return merged;
+    } catch (_) { return base; }
+  }
+
+  let state = loadState();
+  let toastTimer;
+  const currentChapter = () => chapters.find(c => c.id === state.currentChapter);
+  const allQuestions = () => chapters.flatMap(c => c.questions);
+  const getQuestion = id => allQuestions().find(q => q.id === id);
+  const isBookmarked = id => state.bookmarks.includes(id);
+  const save = () => {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (_) { /* file privacy mode */ }
+  };
+  const escapeHTML = value => String(value).replace(/[&<>'"]/g, char => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" }[char]));
+  const chapterStats = chapter => {
+    const answered = chapter.questions.filter(q => state.answers[q.id] !== undefined).length;
+    const correct = chapter.questions.filter(q => state.answers[q.id] === q.answer).length;
+    const marked = chapter.questions.filter(q => isBookmarked(q.id)).length;
+    return { answered, correct, wrong: answered - correct, marked, total: chapter.questions.length };
+  };
+  const globalStats = () => {
+    const answered = allQuestions().filter(q => state.answers[q.id] !== undefined).length;
+    const correct = allQuestions().filter(q => state.answers[q.id] === q.answer).length;
+    return { answered, correct, wrong: answered - correct, marked: state.bookmarks.length, total: allQuestions().length };
+  };
+  const typeCounts = chapter => chapter.questions.reduce((acc, q) => { acc[q.type] = (acc[q.type] || 0) + 1; return acc; }, {});
+  const softColor = hex => `${hex}16`;
+
+  function showToast(message) {
+    clearTimeout(toastTimer);
+    els.toast.textContent = message;
+    els.toast.classList.add("show");
+    toastTimer = setTimeout(() => els.toast.classList.remove("show"), 1800);
+  }
+
+  function closeSidebar() {
+    els.sidebar.classList.remove("open");
+    els.backdrop.classList.remove("open");
+  }
+
+  function goHome() {
+    state.view = "home";
+    save();
+    render();
+    closeSidebar();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function openChapter(chapterId) {
+    state.currentChapter = chapterId;
+    state.lastChapter = chapterId;
+    state.view = "quiz";
+    save();
+    render();
+    closeSidebar();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function filteredQuestions(chapter) {
+    const filter = state.filters[chapter.id];
+    return state.orders[chapter.id].map(getQuestion).filter(q => {
+      const answer = state.answers[q.id];
+      if (filter === "unanswered") return answer === undefined;
+      if (filter === "wrong") return answer !== undefined && answer !== q.answer;
+      if (filter === "bookmarked") return isBookmarked(q.id);
+      return true;
+    });
+  }
+
+  function renderChapterNav() {
+    els.chapterNav.innerHTML = chapters.map(chapter => {
+      const stats = chapterStats(chapter);
+      return `<button class="nav-item ${state.view === "quiz" && state.currentChapter === chapter.id ? "active" : ""}" data-chapter="${chapter.id}" type="button">
+        <span class="nav-icon">${chapter.id === "ch02" ? "∑" : chapter.id === "ch03" ? "↗" : "⌁"}</span>
+        <span class="nav-copy"><strong>${chapter.chapter}</strong><small>${chapter.title}</small></span>
+        <span class="nav-progress">${stats.answered}/${stats.total}</span>
+      </button>`;
+    }).join("");
+    els.chapterNav.querySelectorAll("[data-chapter]").forEach(button => button.addEventListener("click", () => openChapter(button.dataset.chapter)));
+    els.homeNav.classList.toggle("active", state.view === "home");
+  }
+
+  function renderHome() {
+    const stats = globalStats();
+    const accuracy = stats.answered ? Math.round(stats.correct / stats.answered * 100) : 0;
+    els.overallStats.innerHTML = [
+      ["题库总量", stats.total, "道单项选择题", "▤"],
+      ["已经完成", stats.answered, `还剩 ${stats.total - stats.answered} 题`, "✓"],
+      ["当前正确率", `${accuracy}%`, stats.answered ? `答对 ${stats.correct} 题` : "等待你的首答", "◎"],
+      ["收藏题目", stats.marked, "用于考前回顾", "☆"]
+    ].map(([label, value, note, icon]) => `<div class="stat-card"><div class="stat-label"><span>${label}</span><span class="stat-icon">${icon}</span></div><strong>${value}</strong><small>${note}</small></div>`).join("");
+
+    els.chapterCards.innerHTML = chapters.map(chapter => {
+      const stats = chapterStats(chapter);
+      const counts = typeCounts(chapter);
+      const distribution = Object.entries(counts).map(([type, count]) => `<span style="width:${count / stats.total * 100}%;background:${typeColors[type]}" title="${type} ${count} 题"></span>`).join("");
+      const legend = Object.entries(counts).map(([type, count]) => `<span>${type} ${count}</span>`).join("");
+      return `<article class="chapter-card" style="--chapter-color:${chapter.color};--chapter-soft:${softColor(chapter.color)}">
+        <div class="chapter-number"><span>${chapter.chapter.toUpperCase()}</span><small>50 QUESTIONS</small></div>
+        <div><h3>${chapter.title}</h3><p class="chapter-english">${chapter.englishTitle}</p></div>
+        <p class="chapter-description">${chapter.description}</p>
+        <div><div class="distribution">${distribution}</div><div class="distribution-legend">${legend}</div></div>
+        <div class="chapter-card-footer"><span>已完成 ${stats.answered}/50 · 答对 ${stats.correct}</span><button class="card-start" data-start="${chapter.id}" type="button">${stats.answered ? "继续练习" : "开始练习"} →</button></div>
+      </article>`;
+    }).join("");
+    els.chapterCards.querySelectorAll("[data-start]").forEach(button => button.addEventListener("click", () => openChapter(button.dataset.start)));
+    els.continueButton.textContent = stats.answered ? `继续 ${chapters.find(c => c.id === state.lastChapter).chapter}` : "从第一章开始";
+  }
+
+  function renderProgress(chapter) {
+    const stats = chapterStats(chapter);
+    const accuracy = stats.answered ? Math.round(stats.correct / stats.answered * 100) : 0;
+    els.progressStats.innerHTML = `<div><strong>${stats.answered}</strong><span>/ ${stats.total} 已答</span></div><div><strong>${stats.correct}</strong><span>答对</span></div><div><strong>${stats.wrong}</strong><span>答错</span></div><div class="accuracy"><strong>${accuracy}%</strong><span>已答正确率</span></div>`;
+    els.progressFill.style.width = `${stats.answered / stats.total * 100}%`;
+  }
+
+  function renderQuestion(chapter) {
+    const filtered = filteredQuestions(chapter);
+    const hasQuestions = filtered.length > 0;
+    els.questionCard.classList.toggle("hidden", !hasQuestions);
+    els.emptyState.classList.toggle("hidden", hasQuestions);
+    document.querySelector(".question-navigation").classList.toggle("hidden", !hasQuestions);
+    els.questionPosition.textContent = hasQuestions ? `${filtered.length} 题可练习` : "0 题";
+    if (!hasQuestions) {
+      els.prevButton.disabled = els.nextButton.disabled = true;
+      renderMap(chapter);
+      return;
+    }
+
+    let index = filtered.findIndex(q => q.id === state.currentIds[chapter.id]);
+    if (index < 0) {
+      index = 0;
+      state.currentIds[chapter.id] = filtered[0].id;
+      save();
+    }
+    const q = filtered[index];
+    const selected = state.answers[q.id];
+    const answered = selected !== undefined;
+    const isCorrect = selected === q.answer;
+    const marked = isBookmarked(q.id);
+
+    els.questionPosition.textContent = `当前 ${index + 1} / ${filtered.length}`;
+    els.questionMeta.innerHTML = `<span class="meta-badge type">${q.type}</span><span class="meta-badge topic">${escapeHTML(q.topic)}</span><span class="meta-badge number">QUESTION ${String(q.number).padStart(2, "0")}</span>`;
+    els.questionText.textContent = q.q;
+    els.optionsList.innerHTML = q.options.map((option, optionIndex) => {
+      let className = "option-button";
+      let status = "";
+      if (answered) {
+        if (optionIndex === q.answer) { className += " correct"; status = "✓"; }
+        else if (optionIndex === selected) { className += " wrong"; status = "×"; }
+        else className += " dimmed";
+      }
+      return `<button class="${className}" data-option="${optionIndex}" type="button" ${answered ? "disabled" : ""}><span class="option-letter">${letters[optionIndex]}</span><span class="option-text">${escapeHTML(option)}</span><span class="option-status">${status}</span></button>`;
+    }).join("");
+    els.optionsList.querySelectorAll("[data-option]").forEach(button => button.addEventListener("click", () => answerQuestion(q, Number(button.dataset.option))));
+
+    els.feedback.classList.toggle("hidden", !answered);
+    if (answered) {
+      els.feedback.classList.toggle("is-wrong", !isCorrect);
+      els.feedback.innerHTML = `<div class="feedback-title">${isCorrect ? "✓ 回答正确" : "× 回答错误"}</div><p>${!isCorrect ? `<span class="correct-answer">正确答案：${letters[q.answer]}．${escapeHTML(q.answerZh || q.options[q.answer])}</span><br>` : ""}${escapeHTML(q.explanation)}</p>`;
+    }
+    els.bookmarkButton.classList.toggle("active", marked);
+    els.bookmarkButton.innerHTML = `<span>${marked ? "★" : "☆"}</span> ${marked ? "已收藏" : "收藏本题"}`;
+    els.bookmarkButton.onclick = () => toggleBookmark(q.id);
+    els.sourceLabel.textContent = `课件 PDF 第 ${q.page} 页 · ${q.topic}`;
+    els.prevButton.disabled = index === 0;
+    els.nextButton.disabled = index === filtered.length - 1;
+    els.prevButton.onclick = () => navigateQuestion(-1);
+    els.nextButton.onclick = () => navigateQuestion(1);
+    renderMap(chapter);
+  }
+
+  function renderMap(chapter) {
+    const stats = chapterStats(chapter);
+    els.mapCount.textContent = `${stats.answered} / ${stats.total}`;
+    els.questionMap.innerHTML = state.orders[chapter.id].map(getQuestion).map(q => {
+      const answer = state.answers[q.id];
+      const status = answer === undefined ? "" : answer === q.answer ? "correct" : "wrong";
+      const classes = ["map-button", status, q.id === state.currentIds[chapter.id] ? "current" : "", isBookmarked(q.id) ? "bookmarked" : ""].filter(Boolean).join(" ");
+      return `<button class="${classes}" data-map-id="${q.id}" type="button" title="第 ${q.number} 题 · ${escapeHTML(q.topic)}">${q.number}</button>`;
+    }).join("");
+    els.questionMap.querySelectorAll("[data-map-id]").forEach(button => button.addEventListener("click", () => {
+      state.currentIds[chapter.id] = button.dataset.mapId;
+      save(); renderQuestion(chapter);
+      if (window.innerWidth < 821) els.questionCard.scrollIntoView({ behavior: "smooth", block: "start" });
+    }));
+    const counts = typeCounts(chapter);
+    els.typeBreakdown.innerHTML = Object.entries(counts).map(([type, count]) => `<div class="type-row"><span>${type}</span><strong>${count} 题 · ${Math.round(count / stats.total * 100)}%</strong></div>`).join("");
+  }
+
+  function renderQuiz() {
+    const chapter = currentChapter();
+    els.quizView.style.setProperty("--chapter-color", chapter.color);
+    els.quizView.style.setProperty("--chapter-soft", softColor(chapter.color));
+    els.quizEyebrow.textContent = `${chapter.chapter.toUpperCase()} · ${chapter.englishTitle.toUpperCase()}`;
+    els.quizTitle.textContent = chapter.title;
+    els.quizDescription.textContent = chapter.description;
+    document.querySelectorAll(".filter-button").forEach(button => button.classList.toggle("active", button.dataset.filter === state.filters[chapter.id]));
+    renderProgress(chapter);
+    renderQuestion(chapter);
+  }
+
+  function render() {
+    const home = state.view === "home";
+    els.homeView.classList.toggle("hidden", !home);
+    els.quizView.classList.toggle("hidden", home);
+    const chapter = currentChapter();
+    els.breadcrumb.innerHTML = `<span>金融学</span><b>/</b><strong>${home ? "学习总览" : `${chapter.chapter} · ${chapter.title}`}</strong>`;
+    document.title = home ? "利率学习室 · 三章交互题库" : `${chapter.chapter} ${chapter.title} · 利率学习室`;
+    renderChapterNav();
+    if (home) renderHome(); else renderQuiz();
+  }
+
+  function answerQuestion(question, optionIndex) {
+    if (state.answers[question.id] !== undefined) return;
+    state.answers[question.id] = optionIndex;
+    save();
+    renderChapterNav();
+    renderProgress(currentChapter());
+    renderQuestion(currentChapter());
+  }
+
+  function navigateQuestion(direction) {
+    const chapter = currentChapter();
+    const filtered = filteredQuestions(chapter);
+    const index = filtered.findIndex(q => q.id === state.currentIds[chapter.id]);
+    const target = filtered[index + direction];
+    if (!target) return;
+    state.currentIds[chapter.id] = target.id;
+    save(); renderQuestion(chapter);
+    els.questionCard.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+
+  function toggleBookmark(id) {
+    if (isBookmarked(id)) {
+      state.bookmarks = state.bookmarks.filter(item => item !== id);
+      showToast("已取消收藏");
+    } else {
+      state.bookmarks.push(id);
+      showToast("已加入收藏，方便考前回顾");
+    }
+    save(); renderQuestion(currentChapter());
+  }
+
+  function setFilter(filter) {
+    const chapter = currentChapter();
+    state.filters[chapter.id] = filter;
+    const filtered = filteredQuestions(chapter);
+    if (filtered.length && !filtered.some(q => q.id === state.currentIds[chapter.id])) state.currentIds[chapter.id] = filtered[0].id;
+    save();
+    document.querySelectorAll(".filter-button").forEach(button => button.classList.toggle("active", button.dataset.filter === filter));
+    renderQuestion(chapter);
+  }
+
+  function shuffleChapter() {
+    const chapter = currentChapter();
+    const order = [...state.orders[chapter.id]];
+    for (let i = order.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [order[i], order[j]] = [order[j], order[i]];
+    }
+    state.orders[chapter.id] = order;
+    save(); renderQuestion(chapter);
+    showToast("本章题序已随机排列，答题记录已保留");
+  }
+
+  function showScore() {
+    const chapter = currentChapter();
+    const stats = chapterStats(chapter);
+    const percent = Math.round(stats.correct / stats.total * 100);
+    const counts = typeCounts(chapter);
+    const rows = Object.keys(counts).map(type => {
+      const questions = chapter.questions.filter(q => q.type === type);
+      const correct = questions.filter(q => state.answers[q.id] === q.answer).length;
+      const answered = questions.filter(q => state.answers[q.id] !== undefined).length;
+      return `<div class="score-type-row"><span>${type}</span><div class="score-type-track"><div class="score-type-fill" style="width:${correct / questions.length * 100}%"></div></div><strong>${correct}/${questions.length} · 已答${answered}</strong></div>`;
+    }).join("");
+    els.scoreContent.innerHTML = `<div class="score-header"><span>CHAPTER REPORT</span><h2>${chapter.chapter} · 本章成绩</h2><div class="score-ring" style="--score-angle:${percent * 3.6}deg;--chapter-color:${chapter.color}"><div><strong>${stats.correct * 2}</strong><small>满分 100</small></div></div></div>
+      <div class="score-summary"><div><strong>${stats.correct}</strong><span>答对</span></div><div><strong>${stats.wrong}</strong><span>答错</span></div><div><strong>${stats.total - stats.answered}</strong><span>未答</span></div></div>
+      <div class="score-types">${rows}</div>
+      <div class="score-actions"><button class="secondary-button" id="scoreCloseInner" type="button">继续练习</button><button class="primary-button" id="reviewWrongButton" type="button" ${stats.wrong ? "" : "disabled"}>复习错题 ${stats.wrong ? `(${stats.wrong})` : ""}</button></div>`;
+    els.scoreDialog.showModal();
+    $("scoreCloseInner").onclick = () => els.scoreDialog.close();
+    $("reviewWrongButton").onclick = () => { els.scoreDialog.close(); setFilter("wrong"); };
+  }
+
+  function resetChapter() {
+    const chapter = currentChapter();
+    if (!window.confirm(`确定清空 ${chapter.chapter} 的全部作答记录吗？收藏会保留。`)) return;
+    chapter.questions.forEach(q => delete state.answers[q.id]);
+    state.currentIds[chapter.id] = state.orders[chapter.id][0];
+    state.filters[chapter.id] = "all";
+    save(); render(); showToast("本章作答记录已清空");
+  }
+
+  function resetAll() {
+    if (!window.confirm("确定清空三章的全部作答、收藏与题序记录吗？此操作无法撤销。")) return;
+    state = freshState();
+    save(); render(); showToast("全部学习记录已清空");
+  }
+
+  els.homeNav.addEventListener("click", goHome);
+  $("startButton").addEventListener("click", () => openChapter("ch02"));
+  els.continueButton.addEventListener("click", () => openChapter(state.lastChapter));
+  $("menuButton").addEventListener("click", () => { els.sidebar.classList.add("open"); els.backdrop.classList.add("open"); });
+  els.backdrop.addEventListener("click", closeSidebar);
+  $("shuffleButton").addEventListener("click", shuffleChapter);
+  $("scoreButton").addEventListener("click", showScore);
+  $("resetChapterButton").addEventListener("click", resetChapter);
+  $("resetAllButton").addEventListener("click", resetAll);
+  $("closeScoreButton").addEventListener("click", () => els.scoreDialog.close());
+  $("showAllButton").addEventListener("click", () => setFilter("all"));
+  document.querySelectorAll(".filter-button").forEach(button => button.addEventListener("click", () => setFilter(button.dataset.filter)));
+  els.scoreDialog.addEventListener("click", event => {
+    const rect = els.scoreDialog.getBoundingClientRect();
+    if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) els.scoreDialog.close();
+  });
+
+  document.addEventListener("keydown", event => {
+    if (state.view !== "quiz" || els.scoreDialog.open || /INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)) return;
+    const chapter = currentChapter();
+    const q = getQuestion(state.currentIds[chapter.id]);
+    if (["1", "2", "3", "4"].includes(event.key) && q && state.answers[q.id] === undefined && filteredQuestions(chapter).some(item => item.id === q.id)) {
+      answerQuestion(q, Number(event.key) - 1);
+    } else if (event.key === "ArrowLeft") { event.preventDefault(); navigateQuestion(-1); }
+    else if (event.key === "ArrowRight") { event.preventDefault(); navigateQuestion(1); }
+    else if (event.key.toLowerCase() === "b" && q) toggleBookmark(q.id);
+  });
+
+  render();
+})();
+
+</script>
+</body>
+</html>
